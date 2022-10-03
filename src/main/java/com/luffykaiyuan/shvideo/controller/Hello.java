@@ -19,6 +19,7 @@ public class Hello {
     @Autowired
     UserInfoImpl userInfoImpl;
 
+    
     @GetMapping("/hello")
     public List<UserInfo> hello(){
         UserInfo userInfo = new UserInfo();
@@ -26,11 +27,7 @@ public class Hello {
         userInfo.setAddTime(GetNowDate.getDate());
         UserInfo get = userInfoImpl.selectOneUserInfo("371e15dad7404aad");
 
-        Date d= get.getAddTime();
-        SimpleDateFormat dd=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(dd.format(new Date(d.getTime() + -7 * 24 * 60 * 60 * 1000L)));
-        Date a = new Date(d.getTime() + -7 * 24 * 60 * 60 * 1000L);
-        System.out.println(dd.format(new Date(d.getTime() + -7 * 24 * 60 * 60 * 1000L)));
+        Date a = GetNowDate.AddAndSubDate(get.getAddTime(), 7);
 
         return userInfoImpl.selectOne(a);
     }

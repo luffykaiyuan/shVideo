@@ -55,4 +55,10 @@ public class GetNowDate {
         String result = format.format(today);
         return result;
     }
+
+    //时间加减yyyy-MM-dd HH:mm:ss
+    public static Date AddAndSubDate(Date date, int num){
+        Date newDate = new Date(date.getTime() + num * 24 * 60 * 60 * 1000L);
+        return newDate;
+    }
 }
