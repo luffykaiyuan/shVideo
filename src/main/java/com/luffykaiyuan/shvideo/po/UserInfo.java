@@ -15,15 +15,17 @@ public class UserInfo {
 
     private String inviteCode;
 
-    private String status;
-
     private String inviteUsername;
 
     private String cardType;
 
+    private Integer lookNum;
+
     private String rankId;
 
     private Date addTime;
+
+    private String status;
 
     public String getUserId() {
         return userId;
@@ -73,14 +75,6 @@ public class UserInfo {
         this.inviteCode = inviteCode == null ? null : inviteCode.trim();
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
-
     public String getInviteUsername() {
         return inviteUsername;
     }
@@ -97,6 +91,14 @@ public class UserInfo {
         this.cardType = cardType == null ? null : cardType.trim();
     }
 
+    public Integer getLookNum() {
+        return lookNum;
+    }
+
+    public void setLookNum(Integer lookNum) {
+        this.lookNum = lookNum;
+    }
+
     public String getRankId() {
         return rankId;
     }
@@ -111,5 +113,13 @@ public class UserInfo {
 
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 }

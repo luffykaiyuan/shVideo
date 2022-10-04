@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.ProductDataMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.ProductData">
+    <id column="product_data_id" jdbcType="VARCHAR" property="productDataId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="rank_id" jdbcType="VARCHAR" property="rankId" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_data_id, username, rank_id, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_data
+    where product_data_id = #{productDataId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product_data
+    where product_data_id = #{productDataId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.ProductData">
+    insert into product_data (product_data_id, username, rank_id, 
+      add_time, status)
+    values (#{productDataId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{rankId,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.ProductData">
+    insert into product_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productDataId != null">
+        product_data_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="rankId != null">
+        rank_id,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productDataId != null">
+        #{productDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="rankId != null">
+        #{rankId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.ProductData">
+    update product_data
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="rankId != null">
+        rank_id = #{rankId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_data_id = #{productDataId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.ProductData">
+    update product_data
+    set username = #{username,jdbcType=VARCHAR},
+      rank_id = #{rankId,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where product_data_id = #{productDataId,jdbcType=VARCHAR}
+  </update>
+</mapper>

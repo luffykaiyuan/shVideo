@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.RankDetailMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.RankDetail">
+    <id column="rank_id" jdbcType="VARCHAR" property="rankId" />
+    <result column="rank_num" jdbcType="INTEGER" property="rankNum" />
+    <result column="look_num" jdbcType="INTEGER" property="lookNum" />
+    <result column="ratio" jdbcType="REAL" property="ratio" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rank_id, rank_num, look_num, ratio
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rank_detail
+    where rank_id = #{rankId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from rank_detail
+    where rank_id = #{rankId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.RankDetail">
+    insert into rank_detail (rank_id, rank_num, look_num, 
+      ratio)
+    values (#{rankId,jdbcType=VARCHAR}, #{rankNum,jdbcType=INTEGER}, #{lookNum,jdbcType=INTEGER}, 
+      #{ratio,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.RankDetail">
+    insert into rank_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rankId != null">
+        rank_id,
+      </if>
+      <if test="rankNum != null">
+        rank_num,
+      </if>
+      <if test="lookNum != null">
+        look_num,
+      </if>
+      <if test="ratio != null">
+        ratio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rankId != null">
+        #{rankId,jdbcType=VARCHAR},
+      </if>
+      <if test="rankNum != null">
+        #{rankNum,jdbcType=INTEGER},
+      </if>
+      <if test="lookNum != null">
+        #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="ratio != null">
+        #{ratio,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.RankDetail">
+    update rank_detail
+    <set>
+      <if test="rankNum != null">
+        rank_num = #{rankNum,jdbcType=INTEGER},
+      </if>
+      <if test="lookNum != null">
+        look_num = #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="ratio != null">
+        ratio = #{ratio,jdbcType=REAL},
+      </if>
+    </set>
+    where rank_id = #{rankId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.RankDetail">
+    update rank_detail
+    set rank_num = #{rankNum,jdbcType=INTEGER},
+      look_num = #{lookNum,jdbcType=INTEGER},
+      ratio = #{ratio,jdbcType=REAL}
+    where rank_id = #{rankId,jdbcType=VARCHAR}
+  </update>
+</mapper>

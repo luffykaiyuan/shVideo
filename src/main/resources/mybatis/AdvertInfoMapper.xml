@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.AdvertInfoMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    <id column="advert_id" jdbcType="VARCHAR" property="advertId" />
+    <result column="advert_source" jdbcType="VARCHAR" property="advertSource" />
+    <result column="advert_location" jdbcType="VARCHAR" property="advertLocation" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    advert_id, advert_source, advert_location, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from advertinfo
+    where advert_id = #{advertId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from advertinfo
+    where advert_id = #{advertId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    insert into advertinfo (advert_id, advert_source, advert_location, 
+      add_time, status)
+    values (#{advertId,jdbcType=VARCHAR}, #{advertSource,jdbcType=VARCHAR}, #{advertLocation,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    insert into advertinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="advertId != null">
+        advert_id,
+      </if>
+      <if test="advertSource != null">
+        advert_source,
+      </if>
+      <if test="advertLocation != null">
+        advert_location,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="advertId != null">
+        #{advertId,jdbcType=VARCHAR},
+      </if>
+      <if test="advertSource != null">
+        #{advertSource,jdbcType=VARCHAR},
+      </if>
+      <if test="advertLocation != null">
+        #{advertLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    update advertinfo
+    <set>
+      <if test="advertSource != null">
+        advert_source = #{advertSource,jdbcType=VARCHAR},
+      </if>
+      <if test="advertLocation != null">
+        advert_location = #{advertLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where advert_id = #{advertId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    update advertinfo
+    set advert_source = #{advertSource,jdbcType=VARCHAR},
+      advert_location = #{advertLocation,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where advert_id = #{advertId,jdbcType=VARCHAR}
+  </update>
+</mapper>

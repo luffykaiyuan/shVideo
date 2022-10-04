@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.AdminInfoMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.AdminInfo">
+    <id column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="power" jdbcType="VARCHAR" property="power" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    admin_id, admin_name, password, power, add_time, status
+  </sql>
+
+  <insert id="insertAdminInfo" parameterType="com.luffykaiyuan.shvideo.po.AdminInfo">
+    insert into admininfo (admin_id, admin_name, password,
+      power, add_time, status
+      )
+    values (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{power,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateAdminInfo" parameterType="com.luffykaiyuan.shvideo.po.AdminInfo">
+    update admininfo
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      power = #{power,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="delAdmin" parameterType="java.lang.String">
+    update admininfo
+    set status = '0'
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAdminById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admininfo
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAllAdmin" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admininfo
+  </select>
+
+  <select id="selectAdminByAdminName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admininfo
+    where admin_name = #{adminName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectInuseAdmin" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admininfo
+    where status = '1'
+  </select>
+</mapper>

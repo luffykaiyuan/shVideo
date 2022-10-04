@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.VideoTagMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.VideoTag">
+    <id column="tag_id" jdbcType="VARCHAR" property="tagId" />
+    <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tag_id, video_id, tag_name, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from video_tag
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from video_tag
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.VideoTag">
+    insert into video_tag (tag_id, video_id, tag_name, 
+      add_time, status)
+    values (#{tagId,jdbcType=VARCHAR}, #{videoId,jdbcType=VARCHAR}, #{tagName,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.VideoTag">
+    insert into video_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tagId != null">
+        tag_id,
+      </if>
+      <if test="videoId != null">
+        video_id,
+      </if>
+      <if test="tagName != null">
+        tag_name,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tagId != null">
+        #{tagId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoId != null">
+        #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.VideoTag">
+    update video_tag
+    <set>
+      <if test="videoId != null">
+        video_id = #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.VideoTag">
+    update video_tag
+    set video_id = #{videoId,jdbcType=VARCHAR},
+      tag_name = #{tagName,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where tag_id = #{tagId,jdbcType=VARCHAR}
+  </update>
+</mapper>
