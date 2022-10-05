@@ -1,17 +1,24 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.VideoTag;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface VideoTagMapper {
-    int deleteByPrimaryKey(String tagId);
 
-    int insert(VideoTag record);
+    int insertTag(VideoTag videoTag);
 
-    int insertSelective(VideoTag record);
+    int updateTag(VideoTag videoTag);
 
-    VideoTag selectByPrimaryKey(String tagId);
+    int delTag(String tagId);
 
-    int updateByPrimaryKeySelective(VideoTag record);
+    VideoTag selectTagById(String tagId);
 
-    int updateByPrimaryKey(VideoTag record);
+    List<VideoTag> selectTagByName(String tagName);
+
+    List<VideoTag> selectAllTag();
+
+    List<VideoTag> selectInuseTag();
 }

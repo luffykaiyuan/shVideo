@@ -21,6 +21,11 @@ public class VideoMoldService implements VideoMoldMapper{
         return videoMoldMapper.updateMold(videoMold);
     }
 
+    public int delMold(String moldId){
+        return videoMoldMapper.delMold(moldId);
+    }
+
+
     public List<VideoMold> selectAllMold() {
         return videoMoldMapper.selectAllMold();
     }

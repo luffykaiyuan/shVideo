@@ -12,6 +12,8 @@ public interface VideoMoldMapper {
 
     int updateMold(VideoMold videoMold);
 
+    int delMold(String moldId);
+
     List<VideoMold> selectAllMold();
 
     List<VideoMold> selectInuseMold();

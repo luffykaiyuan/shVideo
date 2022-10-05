@@ -25,6 +25,11 @@ public class VideoMoldCon {
         return videoMoldService.updateMold(videoMold);
     }
 
+    @GetMapping("/delMold")
+    public int delMold(String moldId) {
+        return videoMoldService.delMold(moldId);
+    }
+
     @GetMapping("/selectAllMold")
     public List<VideoMold> selectAllMold() {
         return videoMoldService.selectAllMold();

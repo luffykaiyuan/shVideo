@@ -28,6 +28,12 @@
     where mold_id = #{moldId,jdbcType=VARCHAR}
   </update>
 
+  <update id="delMold" parameterType="java.lang.String">
+    update video_mold
+    set status = '0'
+    where mold_id = #{moldId,jdbcType=VARCHAR}
+  </update>
+
   <select id="selectAllMold" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
