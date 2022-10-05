@@ -2,7 +2,7 @@ package com.luffykaiyuan.shvideo.po;
 
 import java.util.Date;
 
-public class VideoMole {
+public class VideoMold {
     private String moldId;
 
     private String moldName;

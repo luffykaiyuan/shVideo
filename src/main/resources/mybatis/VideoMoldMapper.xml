@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.VideoMoldMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.VideoMold">
+    <id column="mold_id" jdbcType="VARCHAR" property="moldId" />
+    <result column="mold_name" jdbcType="VARCHAR" property="moldName" />
+    <result column="mold_type" jdbcType="VARCHAR" property="moldType" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mold_id, mold_name, mold_type, add_time, status
+  </sql>
+
+  <insert id="insertMold" parameterType="com.luffykaiyuan.shvideo.po.VideoMold">
+    insert into video_mold (mold_id, mold_name, mold_type,
+      add_time, status)
+    values (#{moldId,jdbcType=VARCHAR}, #{moldName,jdbcType=VARCHAR}, #{moldType,jdbcType=VARCHAR},
+      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateMold" parameterType="com.luffykaiyuan.shvideo.po.VideoMold">
+    update video_mold
+    set mold_name = #{moldName,jdbcType=VARCHAR},
+      mold_type = #{moldType,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where mold_id = #{moldId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAllMold" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+  </select>
+
+  <select id="selectInuseMold" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where status = '1'
+  </select>
+
+  <select id="selectAllBigMold" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where mold_type = '1'
+  </select>
+
+  <select id="selectInuseBigMold" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where mold_type = '1' and status = '1'
+  </select>
+
+  <select id="selectAllSmallMold" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where mold_type = '2'
+  </select>
+
+  <select id="selectInuseSmallMold" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where mold_type = '2' and status = '1'
+  </select>
+
+  <select id="selectMoldById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where mold_id = #{moldId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMoldByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where mold_id like '%' #{moldId,jdbcType=VARCHAR} '%'
+  </select>
+
+</mapper>
