@@ -45,7 +45,7 @@
     where admin_id = #{adminId,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectAllAdmin" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectAllAdmin" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from admininfo
@@ -58,7 +58,7 @@
     where admin_name = #{adminName,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectInuseAdmin" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectInuseAdmin" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from admininfo

@@ -15,115 +15,85 @@
     video_id, video_name, video_cover, video_source, big_mold, small_mold, add_time, 
     status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+
+  <insert id="insertVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
+    insert into videoinfo (video_id, video_name, video_cover,
+                           video_source, big_mold, small_mold,
+                           add_time, status)
+    values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoCover,jdbcType=VARCHAR},
+            #{videoSource,jdbcType=VARCHAR}, #{bigMold,jdbcType=VARCHAR}, #{smallMold,jdbcType=VARCHAR},
+            #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
+    update videoinfo
+    set video_name = #{videoName,jdbcType=VARCHAR},
+        video_cover = #{videoCover,jdbcType=VARCHAR},
+        video_source = #{videoSource,jdbcType=VARCHAR},
+        big_mold = #{bigMold,jdbcType=VARCHAR},
+        small_mold = #{smallMold,jdbcType=VARCHAR},
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+        status = #{status,jdbcType=VARCHAR}
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="delVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
+    update videoinfo
+    set status = '0'
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAllVideo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+  </select>
+
+  <select id="selectInuseVideo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where status = '1'
+  </select>
+
+  <select id="selectVideoById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from videoinfo
     where video_id = #{videoId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from videoinfo
-    where video_id = #{videoId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
-    insert into videoinfo (video_id, video_name, video_cover, 
-      video_source, big_mold, small_mold, 
-      add_time, status)
-    values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoCover,jdbcType=VARCHAR}, 
-      #{videoSource,jdbcType=VARCHAR}, #{bigMold,jdbcType=VARCHAR}, #{smallMold,jdbcType=VARCHAR}, 
-      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
-    insert into videoinfo
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="videoId != null">
-        video_id,
-      </if>
-      <if test="videoName != null">
-        video_name,
-      </if>
-      <if test="videoCover != null">
-        video_cover,
-      </if>
-      <if test="videoSource != null">
-        video_source,
-      </if>
-      <if test="bigMold != null">
-        big_mold,
-      </if>
-      <if test="smallMold != null">
-        small_mold,
-      </if>
-      <if test="addTime != null">
-        add_time,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="videoId != null">
-        #{videoId,jdbcType=VARCHAR},
-      </if>
-      <if test="videoName != null">
-        #{videoName,jdbcType=VARCHAR},
-      </if>
-      <if test="videoCover != null">
-        #{videoCover,jdbcType=VARCHAR},
-      </if>
-      <if test="videoSource != null">
-        #{videoSource,jdbcType=VARCHAR},
-      </if>
-      <if test="bigMold != null">
-        #{bigMold,jdbcType=VARCHAR},
-      </if>
-      <if test="smallMold != null">
-        #{smallMold,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null">
-        #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
-    update videoinfo
-    <set>
-      <if test="videoName != null">
-        video_name = #{videoName,jdbcType=VARCHAR},
-      </if>
-      <if test="videoCover != null">
-        video_cover = #{videoCover,jdbcType=VARCHAR},
-      </if>
-      <if test="videoSource != null">
-        video_source = #{videoSource,jdbcType=VARCHAR},
-      </if>
-      <if test="bigMold != null">
-        big_mold = #{bigMold,jdbcType=VARCHAR},
-      </if>
-      <if test="smallMold != null">
-        small_mold = #{smallMold,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null">
-        add_time = #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where video_id = #{videoId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
-    update videoinfo
-    set video_name = #{videoName,jdbcType=VARCHAR},
-      video_cover = #{videoCover,jdbcType=VARCHAR},
-      video_source = #{videoSource,jdbcType=VARCHAR},
-      big_mold = #{bigMold,jdbcType=VARCHAR},
-      small_mold = #{smallMold,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR}
-    where video_id = #{videoId,jdbcType=VARCHAR}
-  </update>
+
+  <select id="selectVideoByMold" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where big_mold = #{bigMold,jdbcType=VARCHAR}
+      and small_mold = #{smallMold,jdbcType=VARCHAR}
+        and status = '1'
+  </select>
+
+  <select id="selectVideoByBigMold" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where big_mold = #{bigMold,jdbcType=VARCHAR}
+        and status = '1'
+  </select>
+
+  <select id="selectVideoBySmallMold" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where small_mold = #{smallMold,jdbcType=VARCHAR}
+        and status = '1'
+  </select>
+
+  <select id="selectVideoByVideoName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where video_name like '%' #{videoName,jdbcType=VARCHAR} '%'
+        and status = '1'
+  </select>
+
 </mapper>

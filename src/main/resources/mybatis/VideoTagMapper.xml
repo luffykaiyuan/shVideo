@@ -45,15 +45,16 @@
     <include refid="Base_Column_List" />
     from video_tag
     where tag_name like '%' #{tagName,jdbcType=VARCHAR} '%'
+        and status = '1'
   </select>
 
-  <select id="selectAllTag" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectAllTag" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from video_tag
   </select>
 
-  <select id="selectInuseTag" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectInuseTag" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from video_tag

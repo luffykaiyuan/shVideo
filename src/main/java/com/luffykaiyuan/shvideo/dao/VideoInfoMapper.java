@@ -1,17 +1,31 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.VideoInfo;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface VideoInfoMapper {
-    int deleteByPrimaryKey(String videoId);
 
-    int insert(VideoInfo record);
+    int insertVideo(VideoInfo videoInfo);
 
-    int insertSelective(VideoInfo record);
+    int updateVideo(VideoInfo videoInfo);
 
-    VideoInfo selectByPrimaryKey(String videoId);
+    int delVideo(String videoId);
 
-    int updateByPrimaryKeySelective(VideoInfo record);
+    List<VideoInfo> selectAllVideo();
 
-    int updateByPrimaryKey(VideoInfo record);
+    List<VideoInfo> selectInuseVideo();
+
+    VideoInfo selectVideoById(String videoId);
+
+    List<VideoInfo> selectVideoByMold(String bigMold, String smallMold);
+
+    List<VideoInfo> selectVideoByBigMold(String bigMold);
+
+    List<VideoInfo> selectVideoBySmallMold(String smallMold);
+
+    List<VideoInfo> selectVideoByVideoName(String videoName);
+
 }
