@@ -19,12 +19,66 @@
     user_id, username, password, nick_name, money, invite_code, invite_username, card_type, 
     look_num, rank_id, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+  <insert id="insertUser" parameterType="com.luffykaiyuan.shvideo.po.UserInfo">
+    insert into userinfo (user_id, username, password,
+      nick_name, money, invite_code,
+      invite_username, card_type, look_num,
+      rank_id, add_time, status
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{nickName,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{inviteCode,jdbcType=VARCHAR},
+      #{inviteUsername,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, #{lookNum,jdbcType=INTEGER},
+      #{rankId,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateUser" parameterType="com.luffykaiyuan.shvideo.po.UserInfo">
+    update userinfo
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      invite_username = #{inviteUsername,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=VARCHAR},
+      look_num = #{lookNum,jdbcType=INTEGER},
+      rank_id = #{rankId,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="delUser" parameterType="java.lang.String">
+    update userinfo
+    set status = '0'
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from userinfo
     where user_id = #{userId,jdbcType=VARCHAR}
+        and status = '1'
   </select>
+
+  <select id="selectUserByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    where username like '%' #{username,jdbcType=VARCHAR} '%'
+        and status = '1'
+  </select>
+
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    where username like '%' #{username,jdbcType=VARCHAR} '%'
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from userinfo
     where user_id = #{userId,jdbcType=VARCHAR}

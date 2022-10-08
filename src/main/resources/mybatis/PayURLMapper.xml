@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.PayURLMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.PayURL">
+    <id column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="pay_url" jdbcType="VARCHAR" property="payUrl" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pay_id, pay_url, admin_name, add_time, status
+  </sql>
+
+  <insert id="insertPayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
+    insert into pay_url (pay_id, pay_url, admin_name,
+      add_time, status)
+    values (#{payId,jdbcType=VARCHAR}, #{payUrl,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR},
+      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updatePayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
+    update pay_url
+    set pay_url = #{payUrl,jdbcType=VARCHAR},
+      admin_name = #{adminName,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="delpayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
+    update pay_url
+    set status = '0'
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectInusePayURL" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pay_url
+    where status = '1'
+  </select>
+
+  <select id="selectAllPayURL" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pay_url
+  </select>
+
+  <select id="selectPayURLById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_url
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from pay_url
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
+    insert into pay_url
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payId != null">
+        pay_id,
+      </if>
+      <if test="payUrl != null">
+        pay_url,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payId != null">
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="payUrl != null">
+        #{payUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
+    update pay_url
+    <set>
+      <if test="payUrl != null">
+        pay_url = #{payUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

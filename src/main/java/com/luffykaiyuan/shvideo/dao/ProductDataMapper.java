@@ -1,17 +1,19 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.ProductData;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface ProductDataMapper {
-    int deleteByPrimaryKey(String productDataId);
 
-    int insert(ProductData record);
+    int insertProductData(ProductData productData);
 
-    int insertSelective(ProductData record);
+    int updateProductData(ProductData productData);
 
-    ProductData selectByPrimaryKey(String productDataId);
+    List<ProductData> selectInuseProductData();
 
-    int updateByPrimaryKeySelective(ProductData record);
+    List<ProductData> selectProductDataByUsername(String username);
 
-    int updateByPrimaryKey(ProductData record);
 }

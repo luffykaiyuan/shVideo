@@ -1,17 +1,25 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.UserInfo;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface UserInfoMapper {
-    int deleteByPrimaryKey(String userId);
 
-    int insert(UserInfo record);
+    int insertUser(UserInfo userInfo);
 
-    int insertSelective(UserInfo record);
+    int updateUser(UserInfo userInfo);
 
-    UserInfo selectByPrimaryKey(String userId);
+    int deleteUser(String userId);
 
-    int updateByPrimaryKeySelective(UserInfo record);
+    UserInfo selectUserById(String userId);
 
-    int updateByPrimaryKey(UserInfo record);
+    List<UserInfo> selectUserByName(String username);
+
+    List<UserInfo> selectAllUser();
+
+    List<UserInfo> selectInuseUser();
+
 }

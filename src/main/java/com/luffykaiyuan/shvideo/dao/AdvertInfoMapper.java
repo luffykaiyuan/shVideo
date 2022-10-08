@@ -1,17 +1,23 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.AdvertInfo;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface AdvertInfoMapper {
-    int deleteByPrimaryKey(String advertId);
 
-    int insert(AdvertInfo record);
+    int insertAdvert(AdvertInfo advertInfo);
 
-    int insertSelective(AdvertInfo record);
+    int updateAdvert(AdvertInfo advertInfo);
 
-    AdvertInfo selectByPrimaryKey(String advertId);
+    int delAdvertInfo(String advertId);
 
-    int updateByPrimaryKeySelective(AdvertInfo record);
+    List<AdvertInfo> selectAllAdvert();
 
-    int updateByPrimaryKey(AdvertInfo record);
+    List<AdvertInfo> selectUsableAdvert();
+
+    List<AdvertInfo> selectInuseAdvert();
+
 }

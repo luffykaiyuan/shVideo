@@ -11,78 +11,15 @@
   <sql id="Base_Column_List">
     advert_id, advert_source, advert_location, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from advertinfo
-    where advert_id = #{advertId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from advertinfo
-    where advert_id = #{advertId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
-    insert into advertinfo (advert_id, advert_source, advert_location, 
+
+  <insert id="insertAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    insert into advertinfo (advert_id, advert_source, advert_location,
       add_time, status)
-    values (#{advertId,jdbcType=VARCHAR}, #{advertSource,jdbcType=VARCHAR}, #{advertLocation,jdbcType=VARCHAR}, 
+    values (#{advertId,jdbcType=VARCHAR}, #{advertSource,jdbcType=VARCHAR}, #{advertLocation,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
-    insert into advertinfo
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="advertId != null">
-        advert_id,
-      </if>
-      <if test="advertSource != null">
-        advert_source,
-      </if>
-      <if test="advertLocation != null">
-        advert_location,
-      </if>
-      <if test="addTime != null">
-        add_time,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="advertId != null">
-        #{advertId,jdbcType=VARCHAR},
-      </if>
-      <if test="advertSource != null">
-        #{advertSource,jdbcType=VARCHAR},
-      </if>
-      <if test="advertLocation != null">
-        #{advertLocation,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null">
-        #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
-    update advertinfo
-    <set>
-      <if test="advertSource != null">
-        advert_source = #{advertSource,jdbcType=VARCHAR},
-      </if>
-      <if test="advertLocation != null">
-        advert_location = #{advertLocation,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null">
-        add_time = #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where advert_id = #{advertId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+
+  <update id="updateAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
     update advertinfo
     set advert_source = #{advertSource,jdbcType=VARCHAR},
       advert_location = #{advertLocation,jdbcType=VARCHAR},
@@ -90,4 +27,31 @@
       status = #{status,jdbcType=VARCHAR}
     where advert_id = #{advertId,jdbcType=VARCHAR}
   </update>
+
+  <update id="delAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    update advertinfo
+    set status = '0'
+    where advert_id = #{advertId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAllAdvert" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from advertinfo
+  </select>
+
+  <select id="selectUsableAdvert" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertinfo
+    where status != '0'
+  </select>
+
+  <select id="selectInuseAdvert" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertinfo
+    where status = '2'
+  </select>
+
 </mapper>

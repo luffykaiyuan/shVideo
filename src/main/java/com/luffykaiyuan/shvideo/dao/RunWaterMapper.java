@@ -1,17 +1,17 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.RunWater;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface RunWaterMapper {
-    int deleteByPrimaryKey(String waterId);
 
-    int insert(RunWater record);
+    int insertRunWater(RunWater runWater);
 
-    int insertSelective(RunWater record);
+    int updateRunWater(RunWater runWater);
 
-    RunWater selectByPrimaryKey(String waterId);
+    RunWater selectWaterById(String waterId);
 
-    int updateByPrimaryKeySelective(RunWater record);
+    RunWater selectWaterByName(String username);
 
-    int updateByPrimaryKey(RunWater record);
 }

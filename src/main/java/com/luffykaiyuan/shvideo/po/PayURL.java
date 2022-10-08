@@ -2,21 +2,23 @@ package com.luffykaiyuan.shvideo.po;
 
 import java.util.Date;
 
-public class PayCon {
-    private byte[] payId;
+public class PayURL {
+    private String payId;
 
     private String payUrl;
+
+    private String adminName;
 
     private Date addTime;
 
     private String status;
 
-    public byte[] getPayId() {
+    public String getPayId() {
         return payId;
     }
 
-    public void setPayId(byte[] payId) {
-        this.payId = payId;
+    public void setPayId(String payId) {
+        this.payId = payId == null ? null : payId.trim();
     }
 
     public String getPayUrl() {
@@ -25,6 +27,14 @@ public class PayCon {
 
     public void setPayUrl(String payUrl) {
         this.payUrl = payUrl == null ? null : payUrl.trim();
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName == null ? null : adminName.trim();
     }
 
     public Date getAddTime() {
