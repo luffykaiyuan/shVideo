@@ -2,6 +2,10 @@ package com.luffykaiyuan.shvideo.service;
 
 import com.luffykaiyuan.shvideo.dao.UserInfoMapper;
 import com.luffykaiyuan.shvideo.po.UserInfo;
+import com.luffykaiyuan.shvideo.po.UserInvite;
+import com.luffykaiyuan.shvideo.util.GetNowDate;
+import com.luffykaiyuan.shvideo.util.ShVideoUtils;
+import com.luffykaiyuan.shvideo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +17,22 @@ public class UserInfoService implements UserInfoMapper {
     @Autowired
     UserInfoMapper userInfoMapper;
 
+    @Autowired
+    UserInviteService userInviteService;
+
     public int insertUser(UserInfo userInfo) {
+        userInfo.setUserId(UUIDUtils.getUUID(16));
+        userInfo.setAddTime(GetNowDate.getDate());
+        userInfo.setInviteCode(userInfo.getUsername());
+        if (null != userInfo.getInviteCode()){
+            userInviteService.addInviteNum(userInfo.getInviteUsername());
+            UserInvite userInvite = userInviteService.selectUserInvite(userInfo.getInviteUsername());
+            //todo，更新邀请人等级
+            if (ShVideoUtils.checkInviteNum()){
+
+            }
+        }
+        userInviteService.insertUserInvite(userInfo.getUsername());
         return userInfoMapper.insertUser(userInfo);
     }
 
@@ -29,7 +48,7 @@ public class UserInfoService implements UserInfoMapper {
         return userInfoMapper.selectUserById(userId);
     }
 
-    public List<UserInfo> selectUserByName(String username) {
+    public UserInfo selectUserByName(String username) {
         return userInfoMapper.selectUserByName(username);
     }
 

@@ -1,17 +1,16 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.UserInvite;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UserInviteMapper {
-    int deleteByPrimaryKey(String username);
 
-    int insert(UserInvite record);
+    int insertUserInvite(String username);
 
-    int insertSelective(UserInvite record);
+    UserInvite selectUserInvite(String username);
 
-    UserInvite selectByPrimaryKey(String username);
+    int updateUserInvite(UserInvite userInvite);
 
-    int updateByPrimaryKeySelective(UserInvite record);
-
-    int updateByPrimaryKey(UserInvite record);
+    int addInviteNum(String username);
 }

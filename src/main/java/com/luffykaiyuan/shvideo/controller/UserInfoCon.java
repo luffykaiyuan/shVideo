@@ -36,7 +36,7 @@ public class UserInfoCon {
     }
 
     @GetMapping("/selectUserByName")
-    public List<UserInfo> selectUserByName(String username) {
+    public UserInfo selectUserByName(String username) {
         return userInfoService.selectUserByName(username);
     }
 

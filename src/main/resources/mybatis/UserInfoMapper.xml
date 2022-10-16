@@ -35,8 +35,7 @@
 
   <update id="updateUser" parameterType="com.luffykaiyuan.shvideo.po.UserInfo">
     update userinfo
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
+    set password = #{password,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR},
       money = #{money,jdbcType=VARCHAR},
       invite_code = #{inviteCode,jdbcType=VARCHAR},
@@ -46,7 +45,7 @@
       rank_id = #{rankId,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR}
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where username = #{username,jdbcType=VARCHAR}
   </update>
 
   <update id="delUser" parameterType="java.lang.String">

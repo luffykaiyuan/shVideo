@@ -16,7 +16,7 @@ public interface UserInfoMapper {
 
     UserInfo selectUserById(String userId);
 
-    List<UserInfo> selectUserByName(String username);
+    UserInfo selectUserByName(String username);
 
     List<UserInfo> selectAllUser();
 
