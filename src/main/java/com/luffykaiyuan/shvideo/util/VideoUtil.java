@@ -1,28 +1,18 @@
-package com.luffykaiyuan.shvideo.controller;
+package com.luffykaiyuan.shvideo.util;
 
-import com.luffykaiyuan.shvideo.dao.VideoSourceMapper;
 import com.luffykaiyuan.shvideo.po.VideoSource;
 import net.sf.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-@RestController
-public class Hello {
+public class VideoUtil {
 
-    @Autowired
-    VideoSourceMapper videoSourceMapper;
-
-    @GetMapping("/hello")
-    public BufferedImage hello(){
+    //根据地址获取json文件数据封装为对象
+    public static VideoSource uploadVideo(String path){
         try {
-            String path = "C:\\Users\\Luffykaiyuan\\Desktop\\com.bean.BusinessMov_40004.txt";
             File file = new File(path);
             InputStreamReader isr = new InputStreamReader(new FileInputStream(file),"utf-8");
             BufferedReader br = new BufferedReader(isr);
@@ -46,12 +36,10 @@ public class Hello {
             videoSource.setXvalue(jsonObj.getString("xvalue"));
             videoSource.setXkey(jsonObj.getString("xkey"));
 
-            videoSourceMapper.insert(videoSource);
+            return videoSource;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
-
 }
