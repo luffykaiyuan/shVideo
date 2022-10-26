@@ -9,7 +9,7 @@ public class RunWater {
 
     private String nickName;
 
-    private String money;
+    private float money;
 
     private String waterType;
 
@@ -41,14 +41,6 @@ public class RunWater {
         this.nickName = nickName == null ? null : nickName.trim();
     }
 
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money == null ? null : money.trim();
-    }
-
     public String getWaterType() {
         return waterType;
     }
@@ -71,5 +63,13 @@ public class RunWater {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public float getMoney() {
+        return money;
+    }
+
+    public void setMoney(float money) {
+        this.money = money;
     }
 }

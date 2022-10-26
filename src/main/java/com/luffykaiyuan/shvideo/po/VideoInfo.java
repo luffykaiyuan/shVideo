@@ -9,11 +9,21 @@ public class VideoInfo {
 
     private String videoCover;
 
+    private String videoDescribe;
+
     private String videoSource;
+
+    private String videoServer;
+
+    private String coverServer;
 
     private String bigMold;
 
     private String smallMold;
+
+    private String palyNum;
+
+    private String adminName;
 
     private Date addTime;
 
@@ -41,6 +51,14 @@ public class VideoInfo {
 
     public void setVideoCover(String videoCover) {
         this.videoCover = videoCover == null ? null : videoCover.trim();
+    }
+
+    public String getVideoDescribe() {
+        return videoDescribe;
+    }
+
+    public void setVideoDescribe(String videoDescribe) {
+        this.videoDescribe = videoDescribe == null ? null : videoDescribe.trim();
     }
 
     public String getVideoSource() {
@@ -81,5 +99,37 @@ public class VideoInfo {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public String getCoverServer() {
+        return coverServer;
+    }
+
+    public void setCoverServer(String coverServer) {
+        this.coverServer = coverServer;
+    }
+
+    public String getVideoServer() {
+        return videoServer;
+    }
+
+    public void setVideoServer(String videoServer) {
+        this.videoServer = videoServer;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    public String getPalyNum() {
+        return palyNum;
+    }
+
+    public void setPalyNum(String palyNum) {
+        this.palyNum = palyNum;
     }
 }

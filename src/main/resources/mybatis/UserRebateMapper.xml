@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.UserRebateMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.UserRebate">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="username_son" jdbcType="VARCHAR" property="usernameSon" />
+    <result column="rebate_num" jdbcType="REAL" property="rebateNum" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, username_son, rebate_num, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_rebate
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_rebate
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.UserRebate">
+    insert into user_rebate (id, username, username_son, 
+      rebate_num, add_time, status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{usernameSon,jdbcType=VARCHAR}, 
+      #{rebateNum,jdbcType=REAL}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.UserRebate">
+    insert into user_rebate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="usernameSon != null">
+        username_son,
+      </if>
+      <if test="rebateNum != null">
+        rebate_num,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usernameSon != null">
+        #{usernameSon,jdbcType=VARCHAR},
+      </if>
+      <if test="rebateNum != null">
+        #{rebateNum,jdbcType=REAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.UserRebate">
+    update user_rebate
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usernameSon != null">
+        username_son = #{usernameSon,jdbcType=VARCHAR},
+      </if>
+      <if test="rebateNum != null">
+        rebate_num = #{rebateNum,jdbcType=REAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.UserRebate">
+    update user_rebate
+    set username = #{username,jdbcType=VARCHAR},
+      username_son = #{usernameSon,jdbcType=VARCHAR},
+      rebate_num = #{rebateNum,jdbcType=REAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

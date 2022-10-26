@@ -1,17 +1,17 @@
 /*
- Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
  Source Server         : luffykaiyuan
  Source Server Type    : MySQL
- Source Server Version : 80030 (8.0.30)
+ Source Server Version : 80021
  Source Host           : localhost:3306
  Source Schema         : shvideo
 
  Target Server Type    : MySQL
- Target Server Version : 80030 (8.0.30)
+ Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 24/10/2022 00:35:55
+ Date: 26/10/2022 16:38:54
 */
 
 SET NAMES utf8mb4;
@@ -22,14 +22,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `admininfo`;
 CREATE TABLE `admininfo`  (
-  `admin_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '管理员Id',
-  `admin_name` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '管理员用户名',
-  `password` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '密码',
-  `power` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '2' COMMENT '权限（1为最高权限）',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `admin_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '管理员Id',
+  `admin_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '管理员用户名',
+  `password` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `power` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '2' COMMENT '权限（1为最高权限）',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`admin_id`, `admin_name`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '管理员信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of admininfo
@@ -40,13 +40,15 @@ CREATE TABLE `admininfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `advertinfo`;
 CREATE TABLE `advertinfo`  (
-  `advert_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '广告Id',
-  `advert_source` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '广告源',
-  `advert_location` varchar(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '广告位置（0. 开屏广告\n1. 首页弹窗广告\n2. 首页顶部轮播图广告\n3. 首页列表中部广告\n4. 视频详情页播前广告  //视频 || 图片\n5. 视频详情页播放器下方广告\n6. 游戏页轮播图广告）',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT '状态(-1.删除1.启用0.未启用)',
+  `advert_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '广告Id',
+  `advert_source` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告源',
+  `advert_location` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告位置（0. 开屏广告\n1. 首页弹窗广告\n2. 首页顶部轮播图广告\n3. 首页列表中部广告\n4. 视频详情页播前广告  //视频 || 图片\n5. 视频详情页播放器下方广告\n6. 游戏页轮播图广告）',
+  `advert_describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告描述',
+  `admin_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加人',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '状态(-1.删除1.启用0.未启用)',
   PRIMARY KEY (`advert_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '广告信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '广告信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of advertinfo
@@ -57,13 +59,14 @@ CREATE TABLE `advertinfo`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `pay_url`;
 CREATE TABLE `pay_url`  (
-  `pay_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '支付Id',
-  `pay_url` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '支付Url',
-  `admin_name` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '操作人',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态（1.启用0.未启用-1删除）',
+  `pay_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付Id',
+  `pay_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付Url',
+  `plate_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '平台名字',
+  `admin_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作人',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（1.启用0.未启用-1删除）',
   PRIMARY KEY (`pay_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '支付接口表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '支付接口表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pay_url
@@ -74,13 +77,13 @@ CREATE TABLE `pay_url`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `product_data`;
 CREATE TABLE `product_data`  (
-  `product_data_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '卡数据Id',
-  `username` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `rank_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '用户等级Id',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `product_data_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '卡数据Id',
+  `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `rank_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户等级Id',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`product_data_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '产品购买数据' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品购买数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_data
@@ -91,14 +94,14 @@ CREATE TABLE `product_data`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `product_price`;
 CREATE TABLE `product_price`  (
-  `product_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '充值卡Id',
-  `product_name` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '产品名',
-  `price` varchar(8) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '价格',
-  `valid_time` varchar(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '有效时间',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `product_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '充值卡Id',
+  `product_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品名',
+  `price` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '价格',
+  `valid_time` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '有效时间',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`product_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '产品价目表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品价目表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_price
@@ -109,12 +112,12 @@ CREATE TABLE `product_price`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `rank_detail`;
 CREATE TABLE `rank_detail`  (
-  `rank_id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '等级Id',
+  `rank_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '等级Id',
   `rank_num` int NULL DEFAULT NULL COMMENT '级数',
   `look_num` int NULL DEFAULT NULL COMMENT '观看次数',
   `ratio` float NULL DEFAULT NULL COMMENT '返利比例',
   PRIMARY KEY (`rank_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '等级明细' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '等级明细' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of rank_detail
@@ -135,18 +138,35 @@ INSERT INTO `rank_detail` VALUES ('8', 6, 99999, 0.6);
 -- ----------------------------
 DROP TABLE IF EXISTS `run_water`;
 CREATE TABLE `run_water`  (
-  `water_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '流水Id',
-  `username` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `nick_name` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '昵称',
-  `money` varchar(8) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '金额',
-  `water_type` varchar(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '流水类型（cz.充值fl.返利gm.购买tx.提现yx.游戏）',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `water_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '流水Id',
+  `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `nick_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
+  `money` float NULL DEFAULT NULL COMMENT '金额',
+  `water_type` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '流水类型（cz.充值fl.返利gm.购买tx.提现yx.游戏）',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`water_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '流水明细' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '流水明细' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of run_water
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for server_location
+-- ----------------------------
+DROP TABLE IF EXISTS `server_location`;
+CREATE TABLE `server_location`  (
+  `server_id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id主键',
+  `server_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '服务器地址',
+  `server_type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '1.视频2.图片',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`server_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of server_location
 -- ----------------------------
 
 -- ----------------------------
@@ -154,15 +174,15 @@ CREATE TABLE `run_water`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_history`;
 CREATE TABLE `user_history`  (
-  `history_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '历史Id',
-  `username` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `video_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '视频Id',
-  `play_time` datetime NULL DEFAULT NULL COMMENT '播放时间',
-  `history_time` datetime NULL DEFAULT NULL COMMENT '历史时间',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '状态',
+  `history_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '历史Id',
+  `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `video_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频Id',
+  `play_time` datetime(0) NULL DEFAULT NULL COMMENT '播放时间',
+  `history_time` datetime(0) NULL DEFAULT NULL COMMENT '历史时间',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`history_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '历史信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '历史信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user_history
@@ -187,18 +207,36 @@ CREATE TABLE `user_invite`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_order`;
 CREATE TABLE `user_order`  (
-  `order_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '订单Id',
-  `username` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `order_money` varchar(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '订单金额',
-  `product_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '产品Id',
-  `product_name` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '产品名',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `order_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单Id',
+  `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `order_money` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单金额',
+  `product_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品Id',
+  `product_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品名',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`order_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户订单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户订单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user_order
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for user_rebate
+-- ----------------------------
+DROP TABLE IF EXISTS `user_rebate`;
+CREATE TABLE `user_rebate`  (
+  `id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `username` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '受益人用户名',
+  `username_son` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '提供人用户名',
+  `rebate_num` float NULL DEFAULT NULL COMMENT '返利金额',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '1' COMMENT '状态',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_rebate
 -- ----------------------------
 
 -- ----------------------------
@@ -206,38 +244,41 @@ CREATE TABLE `user_order`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `userinfo`;
 CREATE TABLE `userinfo`  (
-  `user_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '主键',
-  `username` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '手机号',
-  `password` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '密码',
-  `nick_name` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '昵称',
-  `money` varchar(8) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT '余额',
-  `invite_code` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '邀请码',
-  `invite_username` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '邀请人电话',
-  `card_type` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT '卡类型（0.没有1.日卡2.月卡3.季卡4.年卡5.永久）',
+  `user_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
+  `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号',
+  `password` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `nick_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
+  `code_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '二维码地址',
+  `money` float NULL DEFAULT 0 COMMENT '余额',
+  `remain_day` int NULL DEFAULT NULL COMMENT '剩余天数',
+  `invite_code` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邀请码',
+  `invite_username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邀请人电话',
+  `card_type` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '卡类型（0.没有1.日卡2.月卡3.季卡4.年卡5.永久）',
   `look_num` int NULL DEFAULT 3 COMMENT '观看次数',
-  `rank_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT '等级（0-6）',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '0.失效，1.使用',
+  `rank_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '等级（0-6）',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '0.失效，1.使用',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of userinfo
 -- ----------------------------
-INSERT INTO `userinfo` VALUES ('371e15dad7404aad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2022-10-03 16:29:36', NULL);
+INSERT INTO `userinfo` VALUES ('371e15dad7404aad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2022-10-03 16:29:36', NULL);
 
 -- ----------------------------
 -- Table structure for video_mold
 -- ----------------------------
 DROP TABLE IF EXISTS `video_mold`;
 CREATE TABLE `video_mold`  (
-  `mold_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '类Id',
-  `mold_name` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '类名',
-  `mold_type` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '类类型（1.大类，2.小类）',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `mold_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '类Id',
+  `mold_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类名',
+  `mold_type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类类型（1.大类，2.小类）',
+  `belong_mold_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '属于那个大类',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`mold_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '视频大类小类表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '视频大类小类表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of video_mold
@@ -248,21 +289,21 @@ CREATE TABLE `video_mold`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `video_source`;
 CREATE TABLE `video_source`  (
-  `id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '唯一码',
-  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '视频名',
-  `content` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '视频介绍',
-  `cover` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '封面图【未加密】',
-  `secret_cover` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '封面图【已加密】',
-  `secret_cover_text` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '封面图base64',
-  `ratio` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '分辨率',
+  `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '唯一码',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频名',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频介绍',
+  `cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '封面图【未加密】',
+  `secret_cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '封面图【已加密】',
+  `secret_cover_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '封面图base64',
+  `ratio` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分辨率',
   `size` int NULL DEFAULT NULL COMMENT '文件大小【字节】',
-  `http_content` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '视频内容【需动态替换】',
+  `http_content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '视频内容【需动态替换】',
   `duration` int NULL DEFAULT NULL COMMENT '视频时长【秒】',
-  `server_ip` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '服务器地址【用于匹配不同域名】',
-  `xvalue` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT 'm3u8加密key的值【提供给需要动态控制的key】 ',
-  `xkey` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT 'httpContent里 需要替换的字符串',
+  `server_ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '服务器地址【用于匹配不同域名】',
+  `xvalue` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'm3u8加密key的值【提供给需要动态控制的key】 ',
+  `xkey` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'httpContent里 需要替换的字符串',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '原文件数据' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '原文件数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of video_source
@@ -274,13 +315,13 @@ INSERT INTO `video_source` VALUES ('01000912937704', '【不齐舞团】Insomnia
 -- ----------------------------
 DROP TABLE IF EXISTS `video_tag`;
 CREATE TABLE `video_tag`  (
-  `tag_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '标签Id',
-  `video_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '视频Id',
-  `tag_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '标签名',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `tag_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标签Id',
+  `video_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频Id',
+  `tag_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标签名',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`tag_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '视频标签表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '视频标签表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of video_tag
@@ -291,16 +332,21 @@ CREATE TABLE `video_tag`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `videoinfo`;
 CREATE TABLE `videoinfo`  (
-  `video_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '视频Id',
-  `video_name` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '视频名',
-  `video_cover` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '视频封面',
-  `video_source` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '视频源',
-  `big_mold` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '大类',
-  `small_mold` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '小类',
-  `add_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '1' COMMENT '状态',
+  `video_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '视频Id',
+  `video_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频名',
+  `video_cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频封面',
+  `video_describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频描述',
+  `video_source` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频源',
+  `video_server` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频服务器',
+  `cover_server` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片服务器',
+  `big_mold` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '大类',
+  `small_mold` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '小类',
+  `paly_num` int NULL DEFAULT 0 COMMENT '播放次数',
+  `admin_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加人',
+  `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
+  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`video_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '视频信息表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '视频信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of videoinfo

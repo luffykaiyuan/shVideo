@@ -1,9 +1,7 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.VideoSource;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
 public interface VideoSourceMapper {
     int deleteByPrimaryKey(String id);
 

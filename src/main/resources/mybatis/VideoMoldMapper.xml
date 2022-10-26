@@ -5,17 +5,18 @@
     <id column="mold_id" jdbcType="VARCHAR" property="moldId" />
     <result column="mold_name" jdbcType="VARCHAR" property="moldName" />
     <result column="mold_type" jdbcType="VARCHAR" property="moldType" />
+    <result column="belong_mold_id" jdbcType="VARCHAR" property="belongMoldId" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    mold_id, mold_name, mold_type, add_time, status
+    mold_id, mold_name, mold_type, belong_mold_id, add_time, status
   </sql>
 
   <insert id="insertMold" parameterType="com.luffykaiyuan.shvideo.po.VideoMold">
-    insert into video_mold (mold_id, mold_name, mold_type,
+    insert into video_mold (mold_id, mold_name, mold_type, belong_mold_id,
       add_time, status)
-    values (#{moldId,jdbcType=VARCHAR}, #{moldName,jdbcType=VARCHAR}, #{moldType,jdbcType=VARCHAR},
+    values (#{moldId,jdbcType=VARCHAR}, #{moldName,jdbcType=VARCHAR}, #{moldType,jdbcType=VARCHAR}, #{belongMoldId,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
@@ -23,6 +24,7 @@
     update video_mold
     set mold_name = #{moldName,jdbcType=VARCHAR},
       mold_type = #{moldType,jdbcType=VARCHAR},
+      belong_mold_id = #{belongMoldId,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR}
     where mold_id = #{moldId,jdbcType=VARCHAR}

@@ -9,6 +9,8 @@ public class VideoMold {
 
     private String moldType;
 
+    private String belongMoldId;
+
     private Date addTime;
 
     private String status;
@@ -35,6 +37,14 @@ public class VideoMold {
 
     public void setMoldType(String moldType) {
         this.moldType = moldType == null ? null : moldType.trim();
+    }
+
+    public String getBelongMoldId() {
+        return belongMoldId;
+    }
+
+    public void setBelongMoldId(String belongMoldId) {
+        this.belongMoldId = belongMoldId == null ? null : belongMoldId.trim();
     }
 
     public Date getAddTime() {

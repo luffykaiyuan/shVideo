@@ -7,6 +7,8 @@ public class PayURL {
 
     private String payUrl;
 
+    private String plateName;
+
     private String adminName;
 
     private Date addTime;
@@ -51,5 +53,13 @@ public class PayURL {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public String getPlateName() {
+        return plateName;
+    }
+
+    public void setPlateName(String plateName) {
+        this.plateName = plateName;
     }
 }

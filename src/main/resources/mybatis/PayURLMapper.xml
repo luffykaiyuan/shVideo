@@ -4,24 +4,26 @@
   <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.PayURL">
     <id column="pay_id" jdbcType="VARCHAR" property="payId" />
     <result column="pay_url" jdbcType="VARCHAR" property="payUrl" />
+    <result column="plate_name" jdbcType="VARCHAR" property="plateName" />
     <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    pay_id, pay_url, admin_name, add_time, status
+    pay_id, pay_url, plate_name, admin_name, add_time, status
   </sql>
 
   <insert id="insertPayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
-    insert into pay_url (pay_id, pay_url, admin_name,
+    insert into pay_url (pay_id, pay_url, plate_name, admin_name,
       add_time, status)
-    values (#{payId,jdbcType=VARCHAR}, #{payUrl,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR},
+    values (#{payId,jdbcType=VARCHAR}, #{payUrl,jdbcType=VARCHAR}, #{plateName,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
   <update id="updatePayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
     update pay_url
     set pay_url = #{payUrl,jdbcType=VARCHAR},
+      plate_ame = #{plateName,jdbcType=VARCHAR},
       admin_name = #{adminName,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR}

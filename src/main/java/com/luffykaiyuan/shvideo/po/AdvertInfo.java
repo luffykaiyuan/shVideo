@@ -9,6 +9,10 @@ public class AdvertInfo {
 
     private String advertLocation;
 
+    private String advertDescribe;
+
+    private String adminName;
+
     private Date addTime;
 
     private String status;
@@ -51,5 +55,21 @@ public class AdvertInfo {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    public String getAdvertDescribe() {
+        return advertDescribe;
+    }
+
+    public void setAdvertDescribe(String advertDescribe) {
+        this.advertDescribe = advertDescribe;
     }
 }

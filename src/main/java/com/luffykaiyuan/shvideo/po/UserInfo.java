@@ -11,7 +11,11 @@ public class UserInfo {
 
     private String nickName;
 
-    private String money;
+    private String codeAddress;
+
+    private float money;
+
+    private int remainDay;
 
     private String inviteCode;
 
@@ -59,12 +63,12 @@ public class UserInfo {
         this.nickName = nickName == null ? null : nickName.trim();
     }
 
-    public String getMoney() {
+    public float getMoney() {
         return money;
     }
 
-    public void setMoney(String money) {
-        this.money = money == null ? null : money.trim();
+    public void setMoney(float money) {
+        this.money = money;
     }
 
     public String getInviteCode() {
@@ -121,5 +125,21 @@ public class UserInfo {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public String getCodeAddress() {
+        return codeAddress;
+    }
+
+    public void setCodeAddress(String codeAddress) {
+        this.codeAddress = codeAddress;
+    }
+
+    public int getRemainDay() {
+        return remainDay;
+    }
+
+    public void setRemainDay(int remainDay) {
+        this.remainDay = remainDay;
     }
 }

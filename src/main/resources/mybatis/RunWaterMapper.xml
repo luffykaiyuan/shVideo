@@ -5,7 +5,7 @@
     <id column="water_id" jdbcType="VARCHAR" property="waterId" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="money" jdbcType="FLOAT" property="money" />
     <result column="water_type" jdbcType="VARCHAR" property="waterType" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
@@ -19,7 +19,7 @@
       money, water_type, add_time,
       status)
     values (#{waterId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
-      #{money,jdbcType=VARCHAR}, #{waterType,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
+      #{money,jdbcType=FLOAT}, #{waterType,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
       #{status,jdbcType=VARCHAR})
   </insert>
 
@@ -27,7 +27,7 @@
     update run_water
     set username = #{username,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR},
-      money = #{money,jdbcType=VARCHAR},
+      money = #{money,jdbcType=FLOAT},
       water_type = #{waterType,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR}

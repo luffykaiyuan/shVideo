@@ -5,17 +5,19 @@
     <id column="advert_id" jdbcType="VARCHAR" property="advertId" />
     <result column="advert_source" jdbcType="VARCHAR" property="advertSource" />
     <result column="advert_location" jdbcType="VARCHAR" property="advertLocation" />
+    <result column="advert_describe" jdbcType="VARCHAR" property="advertDescribe" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    advert_id, advert_source, advert_location, add_time, status
+    advert_id, advert_source, advert_location, advert_describe, admin_name, add_time, status
   </sql>
 
   <insert id="insertAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
-    insert into advertinfo (advert_id, advert_source, advert_location,
+    insert into advertinfo (advert_id, advert_source, advert_location, advert_describe, admin_name,
       add_time, status)
-    values (#{advertId,jdbcType=VARCHAR}, #{advertSource,jdbcType=VARCHAR}, #{advertLocation,jdbcType=VARCHAR},
+    values (#{advertId,jdbcType=VARCHAR}, #{advertSource,jdbcType=VARCHAR}, #{advertLocation,jdbcType=VARCHAR}, #{advertDescribe,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
@@ -23,6 +25,8 @@
     update advertinfo
     set advert_source = #{advertSource,jdbcType=VARCHAR},
       advert_location = #{advertLocation,jdbcType=VARCHAR},
+      advert_describe = #{advertDescribe,jdbcType=VARCHAR},
+      admin_name = #{adminName,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR}
     where advert_id = #{advertId,jdbcType=VARCHAR}

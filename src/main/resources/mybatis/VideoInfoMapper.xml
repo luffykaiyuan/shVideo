@@ -5,33 +5,43 @@
     <id column="video_id" jdbcType="VARCHAR" property="videoId" />
     <result column="video_name" jdbcType="VARCHAR" property="videoName" />
     <result column="video_cover" jdbcType="VARCHAR" property="videoCover" />
+    <result column="video_describe" jdbcType="VARCHAR" property="videoDescribe" />
     <result column="video_source" jdbcType="VARCHAR" property="videoSource" />
+    <result column="video_server" jdbcType="VARCHAR" property="videoServer" />
+    <result column="cover_server" jdbcType="VARCHAR" property="coverServer" />
     <result column="big_mold" jdbcType="VARCHAR" property="bigMold" />
     <result column="small_mold" jdbcType="VARCHAR" property="smallMold" />
+    <result column="paly_num" jdbcType="VARCHAR" property="palyNum" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    video_id, video_name, video_cover, video_source, big_mold, small_mold, add_time, 
+    video_id, video_name, video_cover, video_describe, video_source, video_server, cover_server, big_mold, small_mold, paly_num, admin_name, add_time,
     status
   </sql>
 
   <insert id="insertVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
-    insert into videoinfo (video_id, video_name, video_cover,
-                           video_source, big_mold, small_mold,
-                           add_time, status)
-    values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoCover,jdbcType=VARCHAR},
-            #{videoSource,jdbcType=VARCHAR}, #{bigMold,jdbcType=VARCHAR}, #{smallMold,jdbcType=VARCHAR},
-            #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+    insert into videoinfo (video_id, video_name, video_cover, video_describe,
+                           video_source, video_server, cover_server, big_mold, small_mold,
+                           paly_num, admin_name. add_time, status)
+    values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoCover,jdbcType=VARCHAR}, #{videoDescribe,jdbcType=VARCHAR},
+            #{videoSource,jdbcType=VARCHAR}, #{videoServer,jdbcType=VARCHAR}, #{coverServer,jdbcType=VARCHAR}, #{bigMold,jdbcType=VARCHAR}, #{smallMold,jdbcType=VARCHAR},
+            #{palyNum,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
   <update id="updateVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
     update videoinfo
     set video_name = #{videoName,jdbcType=VARCHAR},
         video_cover = #{videoCover,jdbcType=VARCHAR},
+        video_describe = #{videoDescribe,jdbcType=VARCHAR},
         video_source = #{videoSource,jdbcType=VARCHAR},
+        video_server = #{videoServer,jdbcType=VARCHAR},
+        cover_server = #{coverServer,jdbcType=VARCHAR},
         big_mold = #{bigMold,jdbcType=VARCHAR},
         small_mold = #{smallMold,jdbcType=VARCHAR},
+        paly_num = #{palyNum,jdbcType=VARCHAR},
+        admin_name = #{adminName,jdbcType=VARCHAR},
         add_time = #{addTime,jdbcType=TIMESTAMP},
         status = #{status,jdbcType=VARCHAR}
     where video_id = #{videoId,jdbcType=VARCHAR}

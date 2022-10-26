@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luffykaiyuan.shvideo.dao.ServerLocationMapper">
+  <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.ServerLocation">
+    <id column="server_id" jdbcType="VARCHAR" property="serverId" />
+    <result column="server_address" jdbcType="VARCHAR" property="serverAddress" />
+    <result column="server_type" jdbcType="VARCHAR" property="serverType" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    server_id, server_address, server_type, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from server_location
+    where server_id = #{serverId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from server_location
+    where server_id = #{serverId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.ServerLocation">
+    insert into server_location (server_id, server_address, server_type, 
+      add_time, status)
+    values (#{serverId,jdbcType=VARCHAR}, #{serverAddress,jdbcType=VARCHAR}, #{serverType,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.ServerLocation">
+    insert into server_location
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serverId != null">
+        server_id,
+      </if>
+      <if test="serverAddress != null">
+        server_address,
+      </if>
+      <if test="serverType != null">
+        server_type,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serverId != null">
+        #{serverId,jdbcType=VARCHAR},
+      </if>
+      <if test="serverAddress != null">
+        #{serverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serverType != null">
+        #{serverType,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.ServerLocation">
+    update server_location
+    <set>
+      <if test="serverAddress != null">
+        server_address = #{serverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serverType != null">
+        server_type = #{serverType,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where server_id = #{serverId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.ServerLocation">
+    update server_location
+    set server_address = #{serverAddress,jdbcType=VARCHAR},
+      server_type = #{serverType,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where server_id = #{serverId,jdbcType=VARCHAR}
+  </update>
+</mapper>
