@@ -7,8 +7,8 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="code_address" jdbcType="VARCHAR" property="codeAddress" />
-    <result column="money" jdbcType="FLOAT" property="money" />
-    <result column="remain_day" jdbcType="INT" property="remainDay" />
+    <result column="money" jdbcType="REAL" property="money" />
+    <result column="remain_day" jdbcType="INTEGER" property="remainDay" />
     <result column="invite_code" jdbcType="VARCHAR" property="inviteCode" />
     <result column="invite_username" jdbcType="VARCHAR" property="inviteUsername" />
     <result column="card_type" jdbcType="VARCHAR" property="cardType" />
@@ -29,7 +29,7 @@
       rank_id, add_time, status
       )
     values (#{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{nickName,jdbcType=VARCHAR}, #{codeAddress,jdbcType=VARCHAR}, #{money,jdbcType=FLOAT}, #{remainDay,jdbcType=INT}, #{inviteCode,jdbcType=VARCHAR},
+      #{nickName,jdbcType=VARCHAR}, #{codeAddress,jdbcType=VARCHAR}, #{money,jdbcType=REAL}, #{remainDay,jdbcType=INTEGER}, #{inviteCode,jdbcType=VARCHAR},
       #{inviteUsername,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, #{lookNum,jdbcType=INTEGER},
       #{rankId,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
       )
@@ -40,8 +40,8 @@
     set password = #{password,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR},
       code_address = #{codeAddress,jdbcType=VARCHAR},
-      money = #{money,jdbcType=FLOAT},
-      remain_day = #{remainDay,jdbcType=INT},
+      money = #{money,jdbcType=REAL},
+      remain_day = #{remainDay,jdbcType=INTEGER},
       invite_code = #{inviteCode,jdbcType=VARCHAR},
       invite_username = #{inviteUsername,jdbcType=VARCHAR},
       card_type = #{cardType,jdbcType=VARCHAR},

@@ -14,7 +14,7 @@
     <name>shVideo</name>
     <description>shVideo</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -50,6 +50,7 @@
             <version>1.4.0</version>
         </dependency>
 
+        <!-- json依赖包 -->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
@@ -59,13 +60,6 @@
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
             <version>3.3.3</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.70</version>
         </dependency>
 
         <dependency>
@@ -98,6 +92,12 @@
             <artifactId>json-lib</artifactId>
             <version>2.2.3</version>
             <classifier>jdk15</classifier><!-- 指定jdk版本 -->
+        </dependency>
+
+        <!-- redis依赖包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
     </dependencies>
