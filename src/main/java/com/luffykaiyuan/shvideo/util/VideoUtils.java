@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-public class VideoUtil {
+public class VideoUtils {
 
     //根据地址获取json文件数据封装为对象
     public static VideoSource uploadVideo(String path){

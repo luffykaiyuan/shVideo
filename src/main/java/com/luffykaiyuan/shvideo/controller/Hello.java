@@ -2,6 +2,7 @@ package com.luffykaiyuan.shvideo.controller;
 
 import com.luffykaiyuan.shvideo.dao.VideoSourceMapper;
 import com.luffykaiyuan.shvideo.po.VideoSource;
+import com.luffykaiyuan.shvideo.util.QRCodeUtils;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.cache.RedisCache;
@@ -22,7 +23,8 @@ public class Hello {
 
     @GetMapping("/hello")
     public BufferedImage hello(){
-
+        File file = new File("C:/codes");
+        QRCodeUtils.createCodeToFile("www.baidu.com",file,"1.png");
 
 //        try {
 //            String path = "C:\\Users\\Luffykaiyuan\\Desktop\\com.bean.BusinessMov_40004.txt";
