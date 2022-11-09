@@ -1,7 +1,9 @@
 package com.luffykaiyuan.shvideo.controller;
 
 import com.luffykaiyuan.shvideo.dao.VideoSourceMapper;
+import com.luffykaiyuan.shvideo.po.VideoInfo;
 import com.luffykaiyuan.shvideo.po.VideoSource;
+import com.luffykaiyuan.shvideo.service.VideoInfoService;
 import com.luffykaiyuan.shvideo.util.QRCodeUtils;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 public class Hello {
@@ -21,11 +27,27 @@ public class Hello {
     @Autowired
     VideoSourceMapper videoSourceMapper;
 
-    @GetMapping("/hello")
-    public BufferedImage hello(){
-        File file = new File("C:/codes");
-        QRCodeUtils.createCodeToFile("www.baidu.com",file,"1.png");
+    @Autowired
+    VideoInfoService videoInfoService;
 
+    @GetMapping("/hello")
+    public BufferedImage hello() throws ParseException {
+//        测试时间查询
+//        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String input ="2022-10-21 18:00:00";
+//        Date beginTime = ft.parse(input);
+//        String out ="2022-11-21 18:00:00";
+//        Date endTime = ft.parse(out);
+//        List<VideoInfo> l = videoInfoService.selectVideoByTime(beginTime, endTime);
+//        for (int i = 0; i < l.size(); i++) {
+//            System.out.println(l.get(i).getVideoName());
+//        }
+
+//        测试二维码生成
+//        File file = new File("C:/codes");
+//        QRCodeUtils.createCodeToFile("www.baidu.com",file,"1.png");
+
+//        测试解析txt
 //        try {
 //            String path = "C:\\Users\\Luffykaiyuan\\Desktop\\com.bean.BusinessMov_40004.txt";
 //            File file = new File(path);

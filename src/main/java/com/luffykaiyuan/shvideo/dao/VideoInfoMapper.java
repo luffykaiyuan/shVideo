@@ -3,6 +3,7 @@ package com.luffykaiyuan.shvideo.dao;
 import com.luffykaiyuan.shvideo.po.VideoInfo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -27,5 +28,11 @@ public interface VideoInfoMapper {
     List<VideoInfo> selectVideoBySmallMold(String smallMold);
 
     List<VideoInfo> selectVideoByVideoName(String videoName);
+
+    List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime);
+
+    int updateBatchVideoServer(List<VideoInfo> videoInfoList);
+
+    int updateBatchVideoMold(List<VideoInfo> videoInfoList);
 
 }

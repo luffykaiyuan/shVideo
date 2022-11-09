@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -63,5 +64,20 @@ public class VideoInfoCon {
     @GetMapping("/selectVideoByVideoName")
     public List<VideoInfo> selectVideoByVideoName(String videoName) {
         return videoInfoService.selectVideoByVideoName(videoName);
+    }
+
+    @GetMapping("/selectVideoByTime")
+    public List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime) {
+        return videoInfoService.selectVideoByTime(beginTime, endTime);
+    }
+
+    @PostMapping("/updateBatchVideoServer")
+    public int updateBatchVideoServer(List<VideoInfo> videoInfoList) {
+        return videoInfoService.updateBatchVideoServer(videoInfoList);
+    }
+
+    @PostMapping("/updateBatchVideoMold")
+    public int updateBatchVideoMold(List<VideoInfo> videoInfoList) {
+        return videoInfoService.updateBatchVideoMold(videoInfoList);
     }
 }

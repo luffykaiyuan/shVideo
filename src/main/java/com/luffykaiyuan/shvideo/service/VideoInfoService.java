@@ -2,9 +2,12 @@ package com.luffykaiyuan.shvideo.service;
 
 import com.luffykaiyuan.shvideo.dao.VideoInfoMapper;
 import com.luffykaiyuan.shvideo.po.VideoInfo;
+import com.luffykaiyuan.shvideo.util.GetNowDate;
+import com.luffykaiyuan.shvideo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,6 +17,8 @@ public class VideoInfoService implements VideoInfoMapper {
     VideoInfoMapper videoInfoMapper;
 
     public int insertVideo(VideoInfo videoInfo) {
+        videoInfo.setVideoId(UUIDUtils.getUUID(16));
+        videoInfo.setAddTime(GetNowDate.getDate());
         return videoInfoMapper.insertVideo(videoInfo);
     }
 
@@ -51,5 +56,17 @@ public class VideoInfoService implements VideoInfoMapper {
 
     public List<VideoInfo> selectVideoByVideoName(String videoName) {
         return videoInfoMapper.selectVideoByVideoName(videoName);
+    }
+
+    public List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime) {
+        return videoInfoMapper.selectVideoByTime(beginTime, endTime);
+    }
+
+    public int updateBatchVideoServer(List<VideoInfo> videoInfoList) {
+        return videoInfoMapper.updateBatchVideoServer(videoInfoList);
+    }
+
+    public int updateBatchVideoMold(List<VideoInfo> videoInfoList) {
+        return videoInfoMapper.updateBatchVideoMold(videoInfoList);
     }
 }

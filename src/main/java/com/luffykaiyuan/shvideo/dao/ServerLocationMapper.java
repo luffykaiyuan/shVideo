@@ -1,17 +1,31 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.ServerLocation;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface ServerLocationMapper {
-    int deleteByPrimaryKey(String serverId);
 
-    int insert(ServerLocation record);
+    int insertImgServer(ServerLocation serverLocation);
 
-    int insertSelective(ServerLocation record);
+    int deleteImgServerById(String serverId);
 
-    ServerLocation selectByPrimaryKey(String serverId);
+    List<ServerLocation> selectInuseImgServer();
 
-    int updateByPrimaryKeySelective(ServerLocation record);
+    List<ServerLocation> selectAllImgServer();
 
-    int updateByPrimaryKey(ServerLocation record);
+    int updateImgServer(ServerLocation serverLocation);
+
+    int insertVideoServer(ServerLocation serverLocation);
+
+    int deleteVideoServerById(String serverId);
+
+    List<ServerLocation> selectInuseVideoServer();
+
+    List<ServerLocation> selectAllVideoServer();
+
+    int updateVideoServer(ServerLocation serverLocation);
+
 }

@@ -24,7 +24,7 @@
   <insert id="insertVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
     insert into videoinfo (video_id, video_name, video_cover, video_describe,
                            video_source, video_server, cover_server, big_mold, small_mold,
-                           paly_num, admin_name. add_time, status)
+                           paly_num, admin_name, add_time, status)
     values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoCover,jdbcType=VARCHAR}, #{videoDescribe,jdbcType=VARCHAR},
             #{videoSource,jdbcType=VARCHAR}, #{videoServer,jdbcType=VARCHAR}, #{coverServer,jdbcType=VARCHAR}, #{bigMold,jdbcType=VARCHAR}, #{smallMold,jdbcType=VARCHAR},
             #{palyNum,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
@@ -106,4 +106,26 @@
         and status = '1'
   </select>
 
+  <select id="selectVideoByTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+  </select>
+
+  <update id="updateBatchVideoServer">
+    <foreach collection="list" item="item" separator=";">
+      update videoinfo set video_server=#{item.videoServer},
+      cover_server=#{item.coverServer},
+      where video_id=#{item.videoId}
+    </foreach>
+  </update>
+
+  <update id="updateBatchVideoMold">
+    <foreach collection="list" item="item" separator=";">
+      update videoinfo set big_mold=#{item.bigMold},
+      small_mold=#{item.smallMold},
+      where video_id=#{item.videoId}
+    </foreach>
+  </update>
 </mapper>
