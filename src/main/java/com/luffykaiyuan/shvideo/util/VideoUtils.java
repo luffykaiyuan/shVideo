@@ -10,6 +10,21 @@ import java.io.InputStreamReader;
 
 public class VideoUtils {
 
+
+
+    //获取完整视频播放地址
+    public static String getFullVideoURL(String orginURL){
+        String str = orginURL.substring(orginURL.indexOf("xxx"), orginURL.indexOf(".ts"));
+        String[] list = str.split("/");
+        String finalURL = "http://";
+        for (int i = 0; i < list.length-1; i++) {
+            finalURL += list[i];
+            finalURL += "/";
+        }
+        finalURL += "orc/index_relative.m3u8";
+        return finalURL;
+    }
+
     //根据地址获取json文件数据封装为对象
     public static VideoSource uploadVideo(String path){
         try {
