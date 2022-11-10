@@ -14,6 +14,10 @@ public interface ProductDataMapper {
 
     List<ProductData> selectInuseProductData();
 
+    List<ProductData> selectProductDataByTime(String beginTime, String endTime);
+
     List<ProductData> selectProductDataByUsername(String username);
+
+    List<ProductData> selectProductDataByName(String productName);
 
 }

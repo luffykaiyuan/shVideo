@@ -36,6 +36,18 @@
     where pay_id = #{payId,jdbcType=VARCHAR}
   </update>
 
+  <update id="removeAllPayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
+    update pay_url
+    set status = '0'
+    where status = '1'
+  </update>
+
+  <update id="chooseOnePayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
+    update pay_url
+    set status = '1'
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+
   <select id="selectInusePayURL" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

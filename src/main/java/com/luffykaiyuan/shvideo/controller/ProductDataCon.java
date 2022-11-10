@@ -19,8 +19,20 @@ public class ProductDataCon {
         return productDataService.selectInuseProductData();
     }
 
+    @GetMapping("/selectProductDataByTime")
+    public List<ProductData> selectProductDataByTime(String beginTime, String endTime) {
+        return productDataService.selectProductDataByTime(beginTime, endTime);
+    }
+
     @GetMapping("/selectProductDataByUsername")
     public List<ProductData> selectProductDataByUsername(String username) {
         return productDataService.selectProductDataByUsername(username);
     }
+
+    @GetMapping("/selectProductDataByName")
+    public List<ProductData> selectProductDataByName(String productName) {
+        return productDataService.selectProductDataByName(productName);
+    }
+
+
 }

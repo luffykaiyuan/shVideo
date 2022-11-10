@@ -25,6 +25,12 @@ public class PayURLCon {
         return payURLService.updatePayURL(payURL);
     }
 
+    @GetMapping("/chooseOnePayURL")
+    public int chooseOnePayURL(String payId) {
+        payURLService.removeAllPayURL();
+        return payURLService.chooseOnePayURL(payId);
+    }
+
     @GetMapping("/delpayURL")
     public int delpayURL(String payId) {
         return payURLService.delpayURL(payId);
@@ -39,6 +45,7 @@ public class PayURLCon {
     public List<PayURL> selectAllPayURL() {
         return payURLService.selectAllPayURL();
     }
+
     @GetMapping("/selectPayURLById")
     public List<PayURL> selectPayURLById(String payId) {
         return payURLService.selectPayURLById(payId);

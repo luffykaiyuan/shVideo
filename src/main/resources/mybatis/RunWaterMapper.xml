@@ -34,6 +34,21 @@
     where water_id = #{waterId,jdbcType=VARCHAR}
   </update>
 
+  <select id="selectInuseWater" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from run_water
+    where status = '1'
+  </select>
+
+  <select id="selectWaterByTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from run_water
+    where status = '1'
+    and where add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+  </select>
+
   <select id="selectWaterById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -47,6 +62,14 @@
     <include refid="Base_Column_List" />
     from run_water
     where username = #{username,jdbcType=VARCHAR}
+        and status = '1'
+  </select>
+
+  <select id="selectWaterByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from run_water
+    where water_type = #{waterType,jdbcType=VARCHAR}
         and status = '1'
   </select>
 

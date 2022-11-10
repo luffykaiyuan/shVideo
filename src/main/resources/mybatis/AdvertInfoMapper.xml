@@ -51,6 +51,27 @@
     where status != '0'
   </select>
 
+  <select id="selectAdvertByLocation" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertinfo
+    where status != '-1'
+    and advert_location = #{advertLocation,jdbcType=VARCHAR}
+  </select>
+
+  <update id="removeAllAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    update advertinfo
+    set status = '0'
+    where advert_location = #{advertLocation,jdbcType=VARCHAR}
+    and status = '1'
+  </update>
+
+  <update id="chooseOneAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
+    update advertinfo
+    set status = '1'
+    where advert_id = #{advertId,jdbcType=VARCHAR}
+  </update>
+
   <select id="selectInuseAdvert" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

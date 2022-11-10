@@ -3,25 +3,27 @@
 <mapper namespace="com.luffykaiyuan.shvideo.dao.ProductDataMapper">
   <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.ProductData">
     <id column="product_data_id" jdbcType="VARCHAR" property="productDataId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="rank_id" jdbcType="VARCHAR" property="rankId" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    product_data_id, username, rank_id, add_time, status
+    product_data_id, product_name, username, rank_id, add_time, status
   </sql>
 
   <insert id="insertProductData" parameterType="com.luffykaiyuan.shvideo.po.ProductData">
-    insert into product_data (product_data_id, username, rank_id,
+    insert into product_data (product_data_id, product_name, username, rank_id,
       add_time, status)
-    values (#{productDataId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{rankId,jdbcType=VARCHAR},
+    values (#{productDataId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{rankId,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
   <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.ProductData">
     update product_data
-    set username = #{username,jdbcType=VARCHAR},
+    set product_name = #{productName,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
       rank_id = #{rankId,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR}
@@ -35,12 +37,28 @@
     where status = '1'
   </select>
 
+  <select id="selectProductDataByTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_data
+    where status = '1'
+    and add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+  </select>
+
   <select id="selectProductDataByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from product_data
     where username = #{username,jdbcType=VARCHAR}
         and status = '1'
+  </select>
+
+  <select id="selectProductDataByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_data
+    where product_name = #{productName,jdbcType=VARCHAR}
+    and status = '1'
   </select>
 
 </mapper>

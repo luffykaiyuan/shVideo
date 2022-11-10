@@ -81,4 +81,27 @@
     where username like '%' #{username,jdbcType=VARCHAR} '%'
   </select>
 
+  <select id="selectUserByTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    where add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+    and status = '1'
+  </select>
+
+  <select id="selectUserByRank" parameterType="java.lang.String"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    where rank_id = #{rankId,jdbcType=VARCHAR}
+    and status = '1'
+  </select>
+
+  <select id="selectUserByCard" parameterType="java.lang.String"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    where card_type = #{cardType,jdbcType=VARCHAR}
+    and status = '1'
+  </select>
 </mapper>

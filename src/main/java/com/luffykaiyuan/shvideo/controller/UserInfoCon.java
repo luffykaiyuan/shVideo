@@ -49,4 +49,19 @@ public class UserInfoCon {
     public List<UserInfo> selectInuseUser() {
         return userInfoService.selectInuseUser();
     }
+
+    @GetMapping("/selectUserByTime")
+    public List<UserInfo> selectUserByTime(String beginTime, String endTime) {
+        return userInfoService.selectUserByTime(beginTime, endTime);
+    }
+
+    @GetMapping("/selectUserByRank")
+    public List<UserInfo> selectUserByRank(String rankId) {
+        return userInfoService.selectUserByRank(rankId);
+    }
+
+    @GetMapping("/selectUserByCard")
+    public List<UserInfo> selectUserByCard(String cardType) {
+        return userInfoService.selectUserByCard(cardType);
+    }
 }

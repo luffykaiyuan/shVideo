@@ -22,4 +22,10 @@ public interface UserInfoMapper {
 
     List<UserInfo> selectInuseUser();
 
+    List<UserInfo> selectUserByTime(String beginTime, String endTime);
+
+    List<UserInfo> selectUserByRank(String rankId);
+
+    List<UserInfo> selectUserByCard(String cardType);
+
 }

@@ -25,7 +25,15 @@ public class ProductDataService implements ProductDataMapper {
         return productDataMapper.selectInuseProductData();
     }
 
+    public List<ProductData> selectProductDataByTime(String beginTime, String endTime) {
+        return productDataMapper.selectProductDataByTime(beginTime, endTime);
+    }
+
     public List<ProductData> selectProductDataByUsername(String username) {
         return productDataMapper.selectProductDataByUsername(username);
+    }
+
+    public List<ProductData> selectProductDataByName(String productName) {
+        return productDataMapper.selectProductDataByName(productName);
     }
 }

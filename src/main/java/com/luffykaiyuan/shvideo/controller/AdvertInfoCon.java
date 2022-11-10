@@ -25,6 +25,12 @@ public class AdvertInfoCon {
         return advertInfoService.updateAdvert(advertInfo);
     }
 
+    @GetMapping("/chooseOneAdvert")
+    public int chooseOneAdvert(String advertLocation, String advertId){
+        advertInfoService.removeAllAdvert(advertLocation);
+        return advertInfoService.chooseOneAdvert(advertId);
+    }
+
     @GetMapping("/delAdvertInfo")
     public int delAdvertInfo(String advertId) {
         return advertInfoService.delAdvertInfo(advertId);
@@ -43,5 +49,10 @@ public class AdvertInfoCon {
     @GetMapping("/selectInuseAdvert")
     public List<AdvertInfo> selectInuseAdvert() {
         return advertInfoService.selectInuseAdvert();
+    }
+
+    @GetMapping("/selectAdvertByLocation")
+    public List<AdvertInfo> selectAdvertByLocation(String advertLocation) {
+        return advertInfoService.selectAdvertByLocation(advertLocation);
     }
 }

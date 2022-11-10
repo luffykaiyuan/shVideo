@@ -36,4 +36,16 @@ public class AdvertInfoService implements AdvertInfoMapper{
     public List<AdvertInfo> selectInuseAdvert() {
         return advertInfoMapper.selectInuseAdvert();
     }
+
+    public List<AdvertInfo> selectAdvertByLocation(String advertLocation) {
+        return advertInfoMapper.selectAdvertByLocation(advertLocation);
+    }
+
+    public int removeAllAdvert(String advertLocation) {
+        return advertInfoMapper.removeAllAdvert(advertLocation);
+    }
+
+    public int chooseOneAdvert(String advertId) {
+        return advertInfoMapper.chooseOneAdvert(advertId);
+    }
 }

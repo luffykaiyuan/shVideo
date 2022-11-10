@@ -20,4 +20,8 @@ public interface PayURLMapper {
 
     List<PayURL> selectPayURLById(String payId);
 
+    int removeAllPayURL();
+
+    int chooseOnePayURL(String payId);
+
 }

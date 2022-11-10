@@ -5,6 +5,8 @@ import java.util.Date;
 public class ProductData {
     private String productDataId;
 
+    private String productName;
+
     private String username;
 
     private String rankId;

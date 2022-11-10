@@ -11,6 +11,8 @@ public class VideoInfo {
 
     private String videoDescribe;
 
+    private String videoTag;
+
     private String videoSource;
 
     private String videoServer;
@@ -22,6 +24,8 @@ public class VideoInfo {
     private String smallMold;
 
     private String palyNum;
+
+    private String duration;
 
     private String adminName;
 
@@ -131,5 +135,21 @@ public class VideoInfo {
 
     public void setPalyNum(String palyNum) {
         this.palyNum = palyNum;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getVideoTag() {
+        return videoTag;
+    }
+
+    public void setVideoTag(String videoTag) {
+        this.videoTag = videoTag;
     }
 }

@@ -5,6 +5,8 @@ import com.luffykaiyuan.shvideo.po.RunWater;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RunWaterService implements RunWaterMapper {
 
@@ -19,11 +21,23 @@ public class RunWaterService implements RunWaterMapper {
         return runWaterMapper.updateRunWater(runWater);
     }
 
-    public RunWater selectWaterById(String waterId) {
+    public List<RunWater> selectInuseWater() {
+        return runWaterMapper.selectInuseWater();
+    }
+
+    public List<RunWater> selectWaterByTime(String beginTime, String endTime){
+        return runWaterMapper.selectWaterByTime(beginTime, endTime);
+    }
+
+    public List<RunWater> selectWaterById(String waterId) {
         return runWaterMapper.selectWaterById(waterId);
     }
 
-    public RunWater selectWaterByName(String username) {
+    public List<RunWater> selectWaterByName(String username) {
         return runWaterMapper.selectWaterByName(username);
+    }
+
+    public List<RunWater> selectWaterByType(String waterType) {
+        return runWaterMapper.selectWaterByType(waterType);
     }
 }

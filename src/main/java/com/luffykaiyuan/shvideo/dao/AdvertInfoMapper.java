@@ -20,4 +20,10 @@ public interface AdvertInfoMapper {
 
     List<AdvertInfo> selectInuseAdvert();
 
+    List<AdvertInfo> selectAdvertByLocation(String advertLocation);
+
+    int removeAllAdvert(String advertLocation);
+
+    int chooseOneAdvert(String advertId);
+
 }

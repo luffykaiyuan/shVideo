@@ -1,6 +1,7 @@
 package com.luffykaiyuan.shvideo.controller;
 
 import com.luffykaiyuan.shvideo.po.VideoInfo;
+import com.luffykaiyuan.shvideo.po.VideoSource;
 import com.luffykaiyuan.shvideo.service.VideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,11 @@ public class VideoInfoCon {
     @PostMapping("/insertVideo")
     public int insertVideo(VideoInfo videoInfo) {
         return videoInfoService.insertVideo(videoInfo);
+    }
+
+    @PostMapping("/insertVideoList")
+    public int insertVideoList(List<VideoSource> sourceList, String imgServer, String videoServer) {
+        return videoInfoService.insertVideoList(sourceList, imgServer, videoServer);
     }
 
     @PostMapping("/updateVideo")

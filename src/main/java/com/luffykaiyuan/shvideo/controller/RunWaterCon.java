@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class RunWaterCon {
 
@@ -23,13 +25,28 @@ public class RunWaterCon {
         return runWaterService.updateRunWater(runWater);
     }
 
+    @GetMapping("/selectInuseWater")
+    public List<RunWater> selectInuseWater() {
+        return runWaterService.selectInuseWater();
+    }
+
+    @GetMapping("/selectWaterByTime")
+    public List<RunWater> selectWaterByTime(String beginTime, String endTime){
+        return runWaterService.selectWaterByTime(beginTime, endTime);
+    }
+
     @GetMapping("/selectWaterById")
-    public RunWater selectWaterById(String waterId) {
+    public List<RunWater> selectWaterById(String waterId) {
         return runWaterService.selectWaterById(waterId);
     }
 
     @GetMapping("/selectWaterByName")
-    public RunWater selectWaterByName(String username) {
+    public List<RunWater> selectWaterByName(String username) {
         return runWaterService.selectWaterByName(username);
+    }
+
+    @GetMapping("/selectWaterByType")
+    public List<RunWater> selectWaterByType(String waterType) {
+        return runWaterService.selectWaterByType(waterType);
     }
 }

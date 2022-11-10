@@ -25,6 +25,20 @@
   <sql id="Blob_Column_List">
     http_content
   </sql>
+  
+  <insert id="insertVideoSource" parameterType="com.luffykaiyuan.shvideo.po.VideoSource">
+    insert into video_source (id, name, content,
+      cover, secret_cover, secret_cover_text,
+      ratio, size, duration,
+      server_ip, xvalue, xkey,
+      http_content)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+      #{cover,jdbcType=VARCHAR}, #{secretCover,jdbcType=VARCHAR}, #{secretCoverText,jdbcType=VARCHAR},
+      #{ratio,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER},
+      #{serverIp,jdbcType=VARCHAR}, #{xvalue,jdbcType=VARCHAR}, #{xkey,jdbcType=VARCHAR},
+      #{httpContent,jdbcType=LONGVARCHAR})
+  </insert>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />

@@ -3,6 +3,8 @@ package com.luffykaiyuan.shvideo.dao;
 import com.luffykaiyuan.shvideo.po.RunWater;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface RunWaterMapper {
 
@@ -10,8 +12,14 @@ public interface RunWaterMapper {
 
     int updateRunWater(RunWater runWater);
 
-    RunWater selectWaterById(String waterId);
+    List<RunWater> selectInuseWater();
 
-    RunWater selectWaterByName(String username);
+    List<RunWater> selectWaterByTime(String beginTime, String endTime);
+
+    List<RunWater> selectWaterById(String waterId);
+
+    List<RunWater> selectWaterByName(String username);
+
+    List<RunWater> selectWaterByType(String waterType);
 
 }

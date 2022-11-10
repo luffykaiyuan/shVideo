@@ -64,6 +64,7 @@ public class VideoMoldCon {
     public VideoMold selectMoldById(String moldId) {
         return videoMoldService.selectMoldById(moldId);
     }
+
     @GetMapping("/selectMoldByName")
     public List<VideoMold> selectMoldByName(String moldName) {
         return videoMoldService.selectMoldByName(moldName);

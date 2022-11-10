@@ -59,4 +59,16 @@ public class UserInfoService implements UserInfoMapper {
     public List<UserInfo> selectInuseUser() {
         return userInfoMapper.selectInuseUser();
     }
+
+    public List<UserInfo> selectUserByTime(String beginTme, String endTime) {
+        return userInfoMapper.selectUserByTime(beginTme, endTime);
+    }
+
+    public List<UserInfo> selectUserByRank(String rankId) {
+        return userInfoMapper.selectUserByRank(rankId);
+    }
+
+    public List<UserInfo> selectUserByCard(String cardType) {
+        return userInfoMapper.selectUserByCard(cardType);
+    }
 }
