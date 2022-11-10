@@ -13,7 +13,7 @@
     <result column="big_mold" jdbcType="VARCHAR" property="bigMold" />
     <result column="small_mold" jdbcType="VARCHAR" property="smallMold" />
     <result column="paly_num" jdbcType="VARCHAR" property="palyNum" />
-    <result column="duration" jdbcType="VARCHAR" property="duration" />
+    <result column="duration" jdbcType="INTEGER" property="duration" />
     <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
@@ -29,7 +29,7 @@
                            paly_num, duration, admin_name, add_time, status)
     values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoCover,jdbcType=VARCHAR}, #{videoDescribe,jdbcType=VARCHAR}, #{videoTag,jdbcType=VARCHAR},
             #{videoSource,jdbcType=VARCHAR}, #{videoServer,jdbcType=VARCHAR}, #{coverServer,jdbcType=VARCHAR}, #{bigMold,jdbcType=VARCHAR}, #{smallMold,jdbcType=VARCHAR},
-            #{palyNum,jdbcType=VARCHAR}, #{duration,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+            #{palyNum,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
   <update id="updateVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
@@ -44,7 +44,7 @@
         big_mold = #{bigMold,jdbcType=VARCHAR},
         small_mold = #{smallMold,jdbcType=VARCHAR},
         paly_num = #{palyNum,jdbcType=VARCHAR},
-        duration = #{duration,jdbcType=VARCHAR},
+        duration = #{duration,jdbcType=INTEGER},
         admin_name = #{adminName,jdbcType=VARCHAR},
         add_time = #{addTime,jdbcType=TIMESTAMP},
         status = #{status,jdbcType=VARCHAR}

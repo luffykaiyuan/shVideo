@@ -25,7 +25,7 @@ public class VideoInfo {
 
     private String palyNum;
 
-    private String duration;
+    private Integer duration;
 
     private String adminName;
 
@@ -137,11 +137,11 @@ public class VideoInfo {
         this.palyNum = palyNum;
     }
 
-    public String getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 

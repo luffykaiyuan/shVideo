@@ -23,13 +23,20 @@ public class VideoInfoService implements VideoInfoMapper {
         return videoInfoMapper.insertVideo(videoInfo);
     }
 
-    public int insertVideoList(List<VideoSource> sourceList, String imgServer, String videoServer) {
+    public int insertVideoList(List<VideoSource> sourceList, String coverServer, String videoServer, String adminName) {
         for (int i = 0; i < sourceList.size(); i++) {
             VideoInfo videoInfo = new VideoInfo();
             videoInfo.setVideoId(UUIDUtils.getUUID(16));
             videoInfo.setVideoName(sourceList.get(i).getName());
-            videoInfo.setVideoCover(sourceList.get(i).getCover().replace("xxx.xxx.xxx", imgServer));
-
+            videoInfo.setVideoCover(sourceList.get(i).getCover().replace("xxx.xxx.xxx", coverServer));
+            videoInfo.setVideoDescribe(sourceList.get(i).getContent());
+            videoInfo.setVideoSource(sourceList.get(i).getHttpContent().replace("xxx.xxx.xxx", videoServer));
+            videoInfo.setVideoServer(videoServer);
+            videoInfo.setCoverServer(coverServer);
+            videoInfo.setDuration(sourceList.get(i).getDuration());
+            videoInfo.setAdminName(adminName);
+            videoInfo.setAddTime(GetNowDate.getDate());
+            videoInfoMapper.insertVideo(videoInfo);
         }
         return 0;
     }

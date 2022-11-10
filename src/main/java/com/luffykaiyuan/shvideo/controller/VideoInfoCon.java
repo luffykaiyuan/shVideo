@@ -23,8 +23,8 @@ public class VideoInfoCon {
     }
 
     @PostMapping("/insertVideoList")
-    public int insertVideoList(List<VideoSource> sourceList, String imgServer, String videoServer) {
-        return videoInfoService.insertVideoList(sourceList, imgServer, videoServer);
+    public int insertVideoList(List<VideoSource> sourceList, String coverServer, String videoServer, String adminName) {
+        return videoInfoService.insertVideoList(sourceList, coverServer, videoServer, adminName);
     }
 
     @PostMapping("/updateVideo")
