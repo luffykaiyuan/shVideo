@@ -1,7 +1,10 @@
 package com.luffykaiyuan.shvideo.po;
 
+import io.swagger.annotations.ApiModel;
+
 import java.util.Date;
 
+@ApiModel(value = "AdminInfo", description = "管理员对象")
 public class AdminInfo {
     private String adminId;
 

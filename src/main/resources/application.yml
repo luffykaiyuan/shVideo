@@ -6,6 +6,9 @@ mybatis:
   mapper-locations: mybatis/**/*Mapper.xml
   type-aliases-package: com.fishpro.**.domain
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/shvideo?useSSL=false&useUnicode=true&characterEncoding=utf8

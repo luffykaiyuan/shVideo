@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 26/10/2022 16:38:54
+ Date: 10/11/2022 17:10:42
 */
 
 SET NAMES utf8mb4;
@@ -78,6 +78,7 @@ CREATE TABLE `pay_url`  (
 DROP TABLE IF EXISTS `product_data`;
 CREATE TABLE `product_data`  (
   `product_data_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '卡数据Id',
+  `product_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品名',
   `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
   `rank_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户等级Id',
   `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
@@ -336,12 +337,14 @@ CREATE TABLE `videoinfo`  (
   `video_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频名',
   `video_cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频封面',
   `video_describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频描述',
+  `video_tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频标签',
   `video_source` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频源',
   `video_server` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视频服务器',
   `cover_server` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片服务器',
   `big_mold` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '大类',
   `small_mold` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '小类',
   `paly_num` int NULL DEFAULT 0 COMMENT '播放次数',
+  `duration` int NULL DEFAULT NULL COMMENT '视频时长【秒】',
   `admin_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加人',
   `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
   `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态',
@@ -351,5 +354,6 @@ CREATE TABLE `videoinfo`  (
 -- ----------------------------
 -- Records of videoinfo
 -- ----------------------------
+INSERT INTO `videoinfo` VALUES ('ef73c9a795234248', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-09 14:08:30', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
