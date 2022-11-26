@@ -27,6 +27,8 @@ public class UserInfo {
 
     private String rankId;
 
+    private String orginRank;
+
     private Date addTime;
 
     private String status;
@@ -141,5 +143,13 @@ public class UserInfo {
 
     public void setRemainDay(int remainDay) {
         this.remainDay = remainDay;
+    }
+
+    public String getOrginRank() {
+        return orginRank;
+    }
+
+    public void setOrginRank(String orginRank) {
+        this.orginRank = orginRank;
     }
 }

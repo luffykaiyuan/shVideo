@@ -25,9 +25,15 @@ public interface VideoInfoMapper {
 
     List<VideoInfo> selectVideoByBigMold(String bigMold);
 
+    List<VideoInfo> selectVideoByBigMoldLimit(String bigMold);
+
     List<VideoInfo> selectVideoBySmallMold(String smallMold);
 
+    List<VideoInfo> selectVideoBySmallMoldLimit(String smallMold);
+
     List<VideoInfo> selectVideoByVideoName(String videoName);
+
+    List<VideoInfo> selectVideoByTag(String videoTag);
 
     List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime);
 

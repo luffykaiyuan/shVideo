@@ -7,6 +7,8 @@ public class VideoSource {
 
     private String content;
 
+    private String tag;
+
     private String cover;
 
     private String secretCover;
@@ -129,5 +131,13 @@ public class VideoSource {
 
     public void setHttpContent(String httpContent) {
         this.httpContent = httpContent == null ? null : httpContent.trim();
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

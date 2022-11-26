@@ -20,6 +20,11 @@ public class UserInfoCon {
         return userInfoService.insertUser(userInfo);
     }
 
+    @PostMapping("/doLogin")
+    public boolean doLogin(UserInfo userInfo) {
+        return userInfoService.doLogin(userInfo);
+    }
+
     @PostMapping("/updateUser")
     public int updateUser(UserInfo userInfo) {
         return userInfoService.updateUser(userInfo);

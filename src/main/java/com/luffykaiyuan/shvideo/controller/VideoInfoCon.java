@@ -62,9 +62,19 @@ public class VideoInfoCon {
         return videoInfoService.selectVideoByBigMold(bigMold);
     }
 
+    @GetMapping("/selectVideoByBigMoldLimit")
+    public List<VideoInfo> selectVideoByBigMoldLimit(String bigMold) {
+        return videoInfoService.selectVideoByBigMoldLimit(bigMold);
+    }
+
     @GetMapping("/selectVideoBySmallMold")
     public List<VideoInfo> selectVideoBySmallMold(String smallMold) {
         return videoInfoService.selectVideoBySmallMold(smallMold);
+    }
+
+    @GetMapping("/selectVideoBySmallMoldLimit")
+    public List<VideoInfo> selectVideoBySmallMoldLimit(String smallMold) {
+        return videoInfoService.selectVideoBySmallMoldLimit(smallMold);
     }
 
     @GetMapping("/selectVideoByVideoName")
@@ -75,6 +85,11 @@ public class VideoInfoCon {
     @GetMapping("/selectVideoByTime")
     public List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime) {
         return videoInfoService.selectVideoByTime(beginTime, endTime);
+    }
+
+    @GetMapping("/selectVideoByTag")
+    public List<VideoInfo> selectVideoByTag(String videoTag) {
+        return videoInfoService.selectVideoByTag(videoTag);
     }
 
     @PostMapping("/updateBatchVideoServer")

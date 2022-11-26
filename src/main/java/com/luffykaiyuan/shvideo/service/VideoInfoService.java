@@ -30,6 +30,7 @@ public class VideoInfoService implements VideoInfoMapper {
             videoInfo.setVideoName(sourceList.get(i).getName());
             videoInfo.setVideoCover(sourceList.get(i).getCover().replace("xxx.xxx.xxx", coverServer));
             videoInfo.setVideoDescribe(sourceList.get(i).getContent());
+            videoInfo.setVideoTag(sourceList.get(i).getTag());
             videoInfo.setVideoSource(sourceList.get(i).getHttpContent().replace("xxx.xxx.xxx", videoServer));
             videoInfo.setVideoServer(videoServer);
             videoInfo.setCoverServer(coverServer);
@@ -69,8 +70,16 @@ public class VideoInfoService implements VideoInfoMapper {
         return videoInfoMapper.selectVideoByBigMold(bigMold);
     }
 
+    public List<VideoInfo> selectVideoByBigMoldLimit(String bigMold) {
+        return videoInfoMapper.selectVideoByBigMoldLimit(bigMold);
+    }
+
     public List<VideoInfo> selectVideoBySmallMold(String smallMold) {
         return videoInfoMapper.selectVideoBySmallMold(smallMold);
+    }
+
+    public List<VideoInfo> selectVideoBySmallMoldLimit(String smallMold) {
+        return videoInfoMapper.selectVideoBySmallMoldLimit(smallMold);
     }
 
     public List<VideoInfo> selectVideoByVideoName(String videoName) {
@@ -79,6 +88,10 @@ public class VideoInfoService implements VideoInfoMapper {
 
     public List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime) {
         return videoInfoMapper.selectVideoByTime(beginTime, endTime);
+    }
+
+    public List<VideoInfo> selectVideoByTag(String videoTag) {
+        return videoInfoMapper.selectVideoByTag(videoTag);
     }
 
     public int updateBatchVideoServer(List<VideoInfo> videoInfoList) {

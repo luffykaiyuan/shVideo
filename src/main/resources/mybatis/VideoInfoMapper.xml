@@ -94,12 +94,32 @@
         and status = '1'
   </select>
 
+  <select id="selectVideoByBigMoldLimit" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where big_mold = #{bigMold,jdbcType=VARCHAR}
+        and status = '1'
+    desc by add_time
+    limit 6
+  </select>
+
   <select id="selectVideoBySmallMold" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from videoinfo
     where small_mold = #{smallMold,jdbcType=VARCHAR}
         and status = '1'
+  </select>
+
+  <select id="selectVideoBySmallMoldLimit" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where small_mold = #{smallMold,jdbcType=VARCHAR}
+    and status = '1'
+    desc by add_time
+    limit 4
   </select>
 
   <select id="selectVideoByVideoName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -115,6 +135,14 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+  </select>
+
+  <select id="selectVideoByTag" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where video_tag like '%' #{videoTag,jdbcType=VARCHAR} '%'
+    and status = '1'
   </select>
 
   <update id="updateBatchVideoServer">

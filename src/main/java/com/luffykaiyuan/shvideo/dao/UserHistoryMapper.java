@@ -1,17 +1,18 @@
 package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.UserHistory;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface UserHistoryMapper {
-    int deleteByPrimaryKey(String historyId);
 
-    int insert(UserHistory record);
+    int insertHistory(UserHistory userHistory);
 
-    int insertSelective(UserHistory record);
+    int deleteOutTimeHistory();
 
-    UserHistory selectByPrimaryKey(String historyId);
+    List<UserHistory> selectByUsername(String username);
 
-    int updateByPrimaryKeySelective(UserHistory record);
-
-    int updateByPrimaryKey(UserHistory record);
+    int updateHistory(UserHistory userHistory);
 }

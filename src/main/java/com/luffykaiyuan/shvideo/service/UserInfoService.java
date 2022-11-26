@@ -36,6 +36,14 @@ public class UserInfoService implements UserInfoMapper {
         return userInfoMapper.insertUser(userInfo);
     }
 
+    public boolean doLogin(UserInfo userInfo){
+        UserInfo orginUserInfo = userInfoMapper.selectUserByName(userInfo.getUsername());
+        if (userInfo.equals(orginUserInfo.getPassword())){
+            return true;
+        }
+        return false;
+    }
+
     public int updateUser(UserInfo userInfo) {
         return userInfoMapper.updateUser(userInfo);
     }
