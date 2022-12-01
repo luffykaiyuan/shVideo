@@ -122,6 +122,14 @@
     limit 4
   </select>
 
+  <select id="selectVideoByMoldId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where mold_id = #{moldId}
+    and status = '1'
+  </select>
+
   <select id="selectVideoByVideoName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -160,4 +168,5 @@
       where video_id=#{item.videoId}
     </foreach>
   </update>
+
 </mapper>

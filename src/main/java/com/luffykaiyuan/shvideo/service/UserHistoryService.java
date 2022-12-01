@@ -6,6 +6,7 @@ import com.luffykaiyuan.shvideo.util.GetNowDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,8 +21,8 @@ public class UserHistoryService implements UserHistoryMapper {
         return userHistoryMapper.insertHistory(userHistory);
     }
 
-    public int deleteOutTimeHistory() {
-        return userHistoryMapper.deleteOutTimeHistory();
+    public void deleteOutTimeHistory(Date endTime) {
+        userHistoryMapper.deleteOutTimeHistory(endTime);
     }
 
     public List<UserHistory> selectByUsername(String username){

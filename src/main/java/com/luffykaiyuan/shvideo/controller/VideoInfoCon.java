@@ -31,10 +31,11 @@ public class VideoInfoCon {
         return videoInfoService.insertVideoList(sourceList, coverServer, videoServer, adminName);
     }
 
-//    @PostMapping("/updateVideo")
-//    public int updateVideo(VideoInfo videoInfo) {
-//        return videoInfoService.updateVideo(videoInfo);
-//    }
+    @PostMapping("/updateVideo")
+    @ApiOperation(value = "修改视频")
+    public int updateVideo(VideoInfo videoInfo) {
+        return videoInfoService.updateVideo(videoInfo);
+    }
 
     @GetMapping("/delVideo")
     @ApiOperation(value = "删除视频")
@@ -72,7 +73,7 @@ public class VideoInfoCon {
     }
 
     @GetMapping("/selectVideoByBigMoldLimit")
-    @ApiOperation(value = "查询视频 by 大类 限制4个")
+    @ApiOperation(value = "查询视频 by 大类 限制6个")
     public List<VideoInfo> selectVideoByBigMoldLimit(String bigMold) {
         return videoInfoService.selectVideoByBigMoldLimit(bigMold);
     }
@@ -87,6 +88,12 @@ public class VideoInfoCon {
     @ApiOperation(value = "查询视频 by 小类 限制4个")
     public List<VideoInfo> selectVideoBySmallMoldLimit(String smallMold) {
         return videoInfoService.selectVideoBySmallMoldLimit(smallMold);
+    }
+
+    @GetMapping("/selectVideoByMoldId")
+    @ApiOperation(value = "查询视频 by 类Id")
+    public List<VideoInfo> selectVideoByMoldId(String moldId) {
+        return videoInfoService.selectVideoByMoldId(moldId);
     }
 
     @GetMapping("/selectVideoByVideoName")

@@ -82,6 +82,10 @@ public class VideoInfoService implements VideoInfoMapper {
         return videoInfoMapper.selectVideoBySmallMoldLimit(smallMold);
     }
 
+    public List<VideoInfo> selectVideoByMoldId(String moldId) {
+        return videoInfoMapper.selectVideoByMoldId(moldId);
+    }
+
     public List<VideoInfo> selectVideoByVideoName(String videoName) {
         return videoInfoMapper.selectVideoByVideoName(videoName);
     }

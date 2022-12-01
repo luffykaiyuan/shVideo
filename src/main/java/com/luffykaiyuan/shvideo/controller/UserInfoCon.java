@@ -19,16 +19,19 @@ public class UserInfoCon {
     UserInfoService userInfoService;
 
     @PostMapping("/doRegister")
+    @ApiOperation(value = "注册")
     public int doRegister(UserInfo userInfo) {
         return userInfoService.insertUser(userInfo);
     }
 
     @PostMapping("/doLogin")
+    @ApiOperation(value = "登录")
     public boolean doLogin(UserInfo userInfo) {
         return userInfoService.doLogin(userInfo);
     }
 
     @PostMapping("/updateUser")
+    @ApiOperation(value = "修改用户信息")
     public int updateUser(UserInfo userInfo) {
         return userInfoService.updateUser(userInfo);
     }

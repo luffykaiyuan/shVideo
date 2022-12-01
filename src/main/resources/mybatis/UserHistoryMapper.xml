@@ -23,9 +23,9 @@
       #{status,jdbcType=VARCHAR})
   </insert>
 
-  <delete id="deleteOutTimeHistory" parameterType="java.lang.String">
+  <delete id="deleteOutTimeHistory">
     delete from user_history
-    where history_time = #{historyId,jdbcType=VARCHAR}
+    where history_time between '2017-01-01 00:00:00' and #{endTime,jdbcType=TIMESTAMP}
   </delete>
 
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">

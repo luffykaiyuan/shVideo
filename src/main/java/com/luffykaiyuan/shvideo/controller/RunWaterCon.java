@@ -19,14 +19,15 @@ public class RunWaterCon {
     RunWaterService runWaterService;
 
     @PostMapping("/insertRunWater")
+    @ApiOperation(value = "新增流水")
     public int insertRunWater(RunWater runWater) {
         return runWaterService.insertRunWater(runWater);
     }
 
-    @PostMapping("/updateRunWater")
-    public int updateRunWater(RunWater runWater) {
-        return runWaterService.updateRunWater(runWater);
-    }
+//    @PostMapping("/updateRunWater")
+//    public int updateRunWater(RunWater runWater) {
+//        return runWaterService.updateRunWater(runWater);
+//    }
 
     @GetMapping("/selectInuseWater")
     @ApiOperation(value = "查询所有有效流水")

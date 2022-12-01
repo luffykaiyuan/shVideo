@@ -31,6 +31,8 @@ public interface VideoInfoMapper {
 
     List<VideoInfo> selectVideoBySmallMoldLimit(String smallMold);
 
+    List<VideoInfo> selectVideoByMoldId(String moldId);
+
     List<VideoInfo> selectVideoByVideoName(String videoName);
 
     List<VideoInfo> selectVideoByTag(String videoTag);
