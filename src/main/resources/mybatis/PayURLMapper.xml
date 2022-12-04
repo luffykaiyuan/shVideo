@@ -23,7 +23,7 @@
   <update id="updatePayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
     update pay_url
     set pay_url = #{payUrl,jdbcType=VARCHAR},
-      plate_ame = #{plateName,jdbcType=VARCHAR},
+      plate_name = #{plateName,jdbcType=VARCHAR},
       admin_name = #{adminName,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR}

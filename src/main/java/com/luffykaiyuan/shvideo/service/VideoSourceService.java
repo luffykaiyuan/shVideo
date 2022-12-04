@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class VideoSourceService implements VideoSourceMapper {
@@ -22,13 +24,15 @@ public class VideoSourceService implements VideoSourceMapper {
     @Value("${uploadAddress}")
     private String uploadAddress;
 
-    public boolean insertVideoSource(String[] videoAddressList) {
+    public List<VideoSource> insertVideoSource(String[] videoAddressList) {
+        List<VideoSource> videoSources = new ArrayList<>();
         for (int i = 0; i < videoAddressList.length; i++) {
             VideoSource videoSource = VideoUtils.uploadVideo(videoAddressList[i]);
             videoSource.setHttpContent(VideoUtils.getFullVideoURL(videoSource.getHttpContent()));
             videoSourceMapper.insertVideoSource(videoSource);
+            videoSources.add(videoSource);
         }
-        return true;
+        return videoSources;
     }
 
     //上传文件  MultipartFile

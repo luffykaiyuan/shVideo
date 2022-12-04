@@ -3,6 +3,7 @@ package com.luffykaiyuan.shvideo.service;
 import com.luffykaiyuan.shvideo.dao.UserHistoryMapper;
 import com.luffykaiyuan.shvideo.po.UserHistory;
 import com.luffykaiyuan.shvideo.util.GetNowDate;
+import com.luffykaiyuan.shvideo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class UserHistoryService implements UserHistoryMapper {
     UserHistoryMapper userHistoryMapper;
 
     public int insertHistory(UserHistory userHistory) {
+        userHistory.setHistoryId(UUIDUtils.getUUID(16));
         userHistory.setPlayTime(GetNowDate.getDate());
         userHistory.setAddTime(GetNowDate.getDate());
         return userHistoryMapper.insertHistory(userHistory);

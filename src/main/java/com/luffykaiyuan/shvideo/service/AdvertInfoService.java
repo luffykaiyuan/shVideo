@@ -2,6 +2,8 @@ package com.luffykaiyuan.shvideo.service;
 
 import com.luffykaiyuan.shvideo.dao.AdvertInfoMapper;
 import com.luffykaiyuan.shvideo.po.AdvertInfo;
+import com.luffykaiyuan.shvideo.util.GetNowDate;
+import com.luffykaiyuan.shvideo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class AdvertInfoService implements AdvertInfoMapper{
     AdvertInfoMapper advertInfoMapper;
 
     public int insertAdvert(AdvertInfo advertInfo) {
+        advertInfo.setAdvertId(UUIDUtils.getUUID(16));
+        advertInfo.setAddTime(GetNowDate.getDate());
         return advertInfoMapper.insertAdvert(advertInfo);
     }
 

@@ -2,6 +2,8 @@ package com.luffykaiyuan.shvideo.service;
 
 import com.luffykaiyuan.shvideo.dao.RunWaterMapper;
 import com.luffykaiyuan.shvideo.po.RunWater;
+import com.luffykaiyuan.shvideo.util.GetNowDate;
+import com.luffykaiyuan.shvideo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class RunWaterService implements RunWaterMapper {
     RunWaterMapper runWaterMapper;
 
     public int insertRunWater(RunWater runWater) {
+        runWater.setWaterId(UUIDUtils.getUUID(16));
+        runWater.setAddTime(GetNowDate.getDate());
         return runWaterMapper.insertRunWater(runWater);
     }
 
