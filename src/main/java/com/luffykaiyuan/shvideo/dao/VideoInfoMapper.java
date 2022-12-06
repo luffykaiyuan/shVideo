@@ -39,6 +39,8 @@ public interface VideoInfoMapper {
 
     List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime);
 
+    List<VideoInfo> selectVideoByDes(String videoDescribe);
+
     int updateBatchVideoServer(List<VideoInfo> videoInfoList);
 
     int updateBatchVideoMold(List<VideoInfo> videoInfoList);

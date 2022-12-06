@@ -28,6 +28,7 @@ public class VideoSourceService implements VideoSourceMapper {
         List<VideoSource> videoSources = new ArrayList<>();
         for (int i = 0; i < videoAddressList.length; i++) {
             VideoSource videoSource = VideoUtils.uploadVideo(videoAddressList[i]);
+            videoSource.setTag(VideoUtils.getTagFromContent(videoSource.getContent()));
             videoSource.setHttpContent(VideoUtils.getFullVideoURL(videoSource.getHttpContent()));
             videoSourceMapper.insertVideoSource(videoSource);
             videoSources.add(videoSource);

@@ -98,6 +98,8 @@ public class VideoInfoService implements VideoInfoMapper {
         return videoInfoMapper.selectVideoByTag(videoTag);
     }
 
+    public List<VideoInfo> selectVideoByDes(String videoDescribe){ return videoInfoMapper.selectVideoByDes(videoDescribe); }
+
     public int updateBatchVideoServer(List<VideoInfo> videoInfoList) {
         return videoInfoMapper.updateBatchVideoServer(videoInfoList);
     }

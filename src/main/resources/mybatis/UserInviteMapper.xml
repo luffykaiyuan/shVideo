@@ -11,7 +11,7 @@
 
   <insert id="insertUserInvite" parameterType="com.luffykaiyuan.shvideo.po.UserInvite">
     insert into user_invite (username)
-    values (#{username,jdbcType=VARCHAR}
+    values (#{username,jdbcType=VARCHAR})
   </insert>
 
   <select id="selectUserInvite" parameterType="java.lang.String" resultMap="BaseResultMap">

@@ -114,6 +114,10 @@ public class VideoInfoCon {
         return videoInfoService.selectVideoByTag(videoTag);
     }
 
+    @GetMapping("/selectVideoByDes")
+    @ApiOperation(value = "查询视频 by 描述")
+    public List<VideoInfo> selectVideoByDes(String videoDescribe){ return videoInfoService.selectVideoByDes(videoDescribe); }
+
     @PostMapping("/updateBatchVideoServer")
     @ApiOperation(value = "修改视频的服务器地址 by id、可批量更新")
     public int updateBatchVideoServer(List<VideoInfo> videoInfoList) {

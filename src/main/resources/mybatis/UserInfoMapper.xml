@@ -83,6 +83,13 @@
     where username like '%' #{username,jdbcType=VARCHAR} '%'
   </select>
 
+  <select id="selectInuseUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    where status = '1'
+  </select>
+
   <select id="selectUserByTime" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

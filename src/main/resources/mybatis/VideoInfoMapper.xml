@@ -153,6 +153,14 @@
     and status = '1'
   </select>
 
+  <select id="selectVideoByDes" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from videoinfo
+    where video_describe like '%' #{videoDescribe,jdbcType=VARCHAR} '%'
+    and status = '1'
+  </select>
+
   <update id="updateBatchVideoServer">
     <foreach collection="list" item="item" separator=";">
       update videoinfo set video_server=#{item.videoServer},

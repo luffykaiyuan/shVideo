@@ -57,4 +57,10 @@ public class VideoUtils {
         }
         return null;
     }
+
+    //获取标签
+    public static String getTagFromContent(String VideoContent){
+        String videoTag = -1 != VideoContent.indexOf("------") ? VideoContent.substring(VideoContent.indexOf("------") + 6 ,VideoContent.length()) :  "";
+        return videoTag;
+    }
 }
