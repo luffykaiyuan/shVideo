@@ -25,6 +25,11 @@ spring:
         max-idle: 20
         min-idle: 2
     timeout: 5000
-
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 uploadAddress: D:/test/

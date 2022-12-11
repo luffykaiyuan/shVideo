@@ -1,110 +1,49 @@
 package com.luffykaiyuan.shvideo.service;
 
-import com.luffykaiyuan.shvideo.dao.VideoInfoMapper;
 import com.luffykaiyuan.shvideo.po.VideoInfo;
 import com.luffykaiyuan.shvideo.po.VideoSource;
-import com.luffykaiyuan.shvideo.util.GetNowDate;
-import com.luffykaiyuan.shvideo.util.UUIDUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
-@Service
-public class VideoInfoService implements VideoInfoMapper {
+public interface  VideoInfoService{
 
-    @Autowired
-    VideoInfoMapper videoInfoMapper;
+    int insertVideo(VideoInfo videoInfo);
 
-    public int insertVideo(VideoInfo videoInfo) {
-        videoInfo.setVideoId(UUIDUtils.getUUID(16));
-        videoInfo.setAddTime(GetNowDate.getDate());
-        return videoInfoMapper.insertVideo(videoInfo);
-    }
+    int updateVideo(VideoInfo videoInfo);
 
-    public int insertVideoList(List<VideoSource> sourceList, String coverServer, String videoServer, String adminName) {
-        for (int i = 0; i < sourceList.size(); i++) {
-            VideoInfo videoInfo = new VideoInfo();
-            videoInfo.setVideoId(UUIDUtils.getUUID(16));
-            videoInfo.setVideoName(sourceList.get(i).getName());
-            videoInfo.setVideoCover(sourceList.get(i).getCover().replace("xxx.xxx.xxx", coverServer));
-            videoInfo.setVideoDescribe(sourceList.get(i).getContent());
-            videoInfo.setVideoTag(sourceList.get(i).getTag());
-            videoInfo.setVideoSource(sourceList.get(i).getHttpContent().replace("xxx.xxx.xxx", videoServer));
-            videoInfo.setVideoServer(videoServer);
-            videoInfo.setCoverServer(coverServer);
-            videoInfo.setDuration(sourceList.get(i).getDuration());
-            videoInfo.setAdminName(adminName);
-            videoInfo.setAddTime(GetNowDate.getDate());
-            videoInfoMapper.insertVideo(videoInfo);
-        }
-        return 0;
-    }
+    int delVideo(String videoId);
 
-    public int updateVideo(VideoInfo videoInfo) {
-        return videoInfoMapper.updateVideo(videoInfo);
-    }
+    int insertVideoList(List<VideoSource> sourceList, String coverServer, String videoServer, String adminName);
 
-    public int delVideo(String videoId) {
-        return videoInfoMapper.delVideo(videoId);
-    }
+    List<VideoInfo> selectAllVideo(int pageNum, int pageSize);
 
-    public List<VideoInfo> selectAllVideo() {
-        return videoInfoMapper.selectAllVideo();
-    }
+    List<VideoInfo> selectInuseVideo(int pageNum, int pageSize);
 
-    public List<VideoInfo> selectInuseVideo() {
-        return videoInfoMapper.selectInuseVideo();
-    }
+    VideoInfo selectVideoById(String videoId);
 
-    public VideoInfo selectVideoById(String videoId) {
-        return videoInfoMapper.selectVideoById(videoId);
-    }
+    List<VideoInfo> selectVideoByMold(String bigMold, String smallMold);
 
-    public List<VideoInfo> selectVideoByMold(String bigMold, String smallMold) {
-        return videoInfoMapper.selectVideoByMold(bigMold, smallMold);
-    }
+    List<VideoInfo> selectVideoByBigMold(String bigMold, int pageNum, int pageSize);
 
-    public List<VideoInfo> selectVideoByBigMold(String bigMold) {
-        return videoInfoMapper.selectVideoByBigMold(bigMold);
-    }
+    List<VideoInfo> selectVideoByBigMoldLimit(String bigMold);
 
-    public List<VideoInfo> selectVideoByBigMoldLimit(String bigMold) {
-        return videoInfoMapper.selectVideoByBigMoldLimit(bigMold);
-    }
+    List<VideoInfo> selectVideoBySmallMold(String smallMold, int pageNum, int pageSize);
 
-    public List<VideoInfo> selectVideoBySmallMold(String smallMold) {
-        return videoInfoMapper.selectVideoBySmallMold(smallMold);
-    }
+    List<VideoInfo> selectVideoBySmallMoldLimit(String smallMold);
 
-    public List<VideoInfo> selectVideoBySmallMoldLimit(String smallMold) {
-        return videoInfoMapper.selectVideoBySmallMoldLimit(smallMold);
-    }
+    List<VideoInfo> selectVideoByMoldId(String moldId);
 
-    public List<VideoInfo> selectVideoByMoldId(String moldId) {
-        return videoInfoMapper.selectVideoByMoldId(moldId);
-    }
+    List<VideoInfo> selectVideoByVideoName(String videoName, int pageNum, int pageSize);
 
-    public List<VideoInfo> selectVideoByVideoName(String videoName) {
-        return videoInfoMapper.selectVideoByVideoName(videoName);
-    }
+    List<VideoInfo> selectVideoByTag(String videoTag, int pageNum, int pageSize);
 
-    public List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime) {
-        return videoInfoMapper.selectVideoByTime(beginTime, endTime);
-    }
+    List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime, int pageNum, int pageSize);
 
-    public List<VideoInfo> selectVideoByTag(String videoTag) {
-        return videoInfoMapper.selectVideoByTag(videoTag);
-    }
+    List<VideoInfo> selectVideoByDes(String videoDescribe, int pageNum, int pageSize);
 
-    public List<VideoInfo> selectVideoByDes(String videoDescribe){ return videoInfoMapper.selectVideoByDes(videoDescribe); }
+    int updateBatchVideoServer(List<VideoInfo> videoInfoList);
 
-    public int updateBatchVideoServer(List<VideoInfo> videoInfoList) {
-        return videoInfoMapper.updateBatchVideoServer(videoInfoList);
-    }
+    int updateBatchVideoMold(List<VideoInfo> videoInfoList);
 
-    public int updateBatchVideoMold(List<VideoInfo> videoInfoList) {
-        return videoInfoMapper.updateBatchVideoMold(videoInfoList);
-    }
 }
