@@ -26,7 +26,7 @@ public class ProductDataService implements ProductDataMapper {
 
     public int insertProductData(ProductData productData) {
         UserInfo userInfo = userInfoMapper.selectUserByName(productData.getUsername());
-        ProductPrice productPrice = new ProductPrice();
+        ProductPrice productPrice = productPriceMapper.selectProductByName(productData.getProductName());
         BigDecimal userBig = new BigDecimal(Float.toString(userInfo.getMoney()));
         BigDecimal productBig = new BigDecimal(Float.toString(productPrice.getPrice()));
         userInfo.setMoney(userBig.subtract(productBig).floatValue());

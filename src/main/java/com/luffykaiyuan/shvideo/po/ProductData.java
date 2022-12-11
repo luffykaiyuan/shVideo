@@ -54,4 +54,12 @@ public class ProductData {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 }

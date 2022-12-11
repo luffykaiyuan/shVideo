@@ -12,25 +12,20 @@
   <sql id="Base_Column_List">
     product_id, product_name, price, valid_time, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectProduct" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from product_price
-    where product_id = #{productId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from product_price
-    where product_id = #{productId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">
-    insert into product_price (product_id, product_name, price, 
-      valid_time, add_time
-      )
-    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
-      #{validTime,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">
+
+  <select id="selectProductByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_price
+    where product_name = #{productName,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateProduct" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">
     update product_price
     <set>
       <if test="productName != null">
@@ -51,13 +46,5 @@
     </set>
     where product_id = #{productId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">
-    update product_price
-    set product_name = #{productName,jdbcType=VARCHAR},
-      price = #{price,jdbcType=REAL},
-      valid_time = #{validTime,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR}
-    where product_id = #{productId,jdbcType=VARCHAR}
-  </update>
+
 </mapper>
