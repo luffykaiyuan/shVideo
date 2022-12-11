@@ -23,16 +23,21 @@ public class Hello {
     RankDetailService rankDetailService;
 
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        String str = "http://4hi22.xyz/api/pay?attch=附加信息&channel=调用代码&desc=订单描述&ip=服务器地址&merId=202210327&nonceStr=随机字符串&notifyUrl=接收地址&orderAmt=交易金额&orderId=订单号&returnUrl=跳转地址&sign=签名&smstyle=1&userId='用户ID'&key=OXkudmiJPtqGozjrgRVTZWbALwUBHKMx ";
+//        String str = "http://4hi22.xyz/api/pay?attch=附加信息&channel=调用代码&desc=订单描述&ip=服务器地址&merId=202210327&nonceStr=随机字符串&notifyUrl=接收地址&orderAmt=交易金额&orderId=订单号&returnUrl=跳转地址&sign=签名&smstyle=1&userId='用户ID'&key=OXkudmiJPtqGozjrgRVTZWbALwUBHKMx ";
+        String str = "http://4hi22.xyz/api/pay?attch=1_1&channel=wxwap&desc=1_2&ip=119.75.217.109&merId=202210327&nonceStr=随机字符串&notifyUrl=http://localhost:8080/hello&orderAmt=0.01&orderId=1&returnUrl=www.baidu.com&sign=签名&smstyle=1&userId=1";//
+        // String str1 = "attch=附加信息&channel=调用代码&desc=订单描述&ip=服务器地址&merId=202210327&nonceStr=随机字符串&notifyUrl=接收地址&orderAmt=交易金额&orderId=订单号&returnUrl=跳转地址&sign=签名&smstyle=1&userId='用户ID'&key=OXkudmiJPtqGozjrgRVTZWbALwUBHKMx ";
+        String str1 = "attch=1_1&channel=wxwap&desc=1_2&ip=119.75.217.109&merId=202210327&nonceStr=随机字符串&notifyUrl=http://localhost:8080/hello&orderAmt=0.01&orderId=1&returnUrl=www.baidu.com&smstyle=1&userId=1&key=OXkudmiJPtqGozjrgRVTZWbALwUBHKMx ";
         Hello hello = new Hello();
-        String md5 = hello.doMD5(str);
+        String md5 = hello.doMD5(str1);
         System.out.println("++++++++++++++++++++++++++++md5");
         System.out.println(md5);
 
         String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCZo1cgGR1f3hiPL/+qLVaHgipnWtruoXFXU3NdrcoQKBDr4IXvgNf7VOaCgCu+H6xZjVGBjUJlJpUMdFZWOLpeZU8KVfOhOI/dxBUfVqZC6dJGpIVikhk+whKKa3x2aKwwDixydComZs2Ej6bK2hzWNdl8/Ei92gwm5SdakeinwIDAQAB";
         String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMJmjVyAZHV/eGI8v/6otVoeCKmda2u6hcVdTc12tyhAoEOvghe+A1/tU5oKAK74frFmNUYGNQmUmlQx0VlY4ul5lTwpV86E4j93EFR9WpkLp0kakhWKSGT7CEoprfHZorDAOLHJ0KiZmzYSPpsraHNY12Xz8SL3aDCblJ1qR6KfAgMBAAECgYAwPZCgvr+vJKW0Aw1F3Ym7Ri6yIH1Sq2OcuW2gKfCDjZ33jesDh0SBHnybghXvVXzi+tEHgmzQ5s5xTDd+K3+LLr45NEE8Ob1ShhqTFKOcIEfLsIXBQkeeOzBVUF++M4RgUgsd2YSKNEzgDYMPoEM1eq2n11IpWjIU9Oe+/R3hOQJBAP/IShdCQQC+88iR1ak+vLXR9Tv4Wg+uvL5mWbmYpGo1Nu3ckwKyKsmHO9md1EVfpDG+/+ZdEuDG/g9651+c/vMCQQDCkOS++qzHWCqWODU0DoADumkZdz8naN3y9GJMhdfoL3k/mOYddCjkKaG/z+dyRp0IypDSiGthzZXb6cvgf3ClAkATAsj295arPoYSBzzRKneOL//BKFFRTxR6NlM+5yh5OGFPxpAqqCFj/ygkoYVwbo5eoCqW7Z4ElOW3MtRVl+6fAkA1RmlsJcWTm/+lPGTNCT9iRfOrRmyjhOJpOSOFYoy5Be7ETECORhVATGn+1JXCQ7WSB61aCIKmuB1VpxHtOdgFAkEAnRcRcqIBUXEdFkTg5YG08oZ7v8hlA7JZT4/Z2edLa9IoOj0OpRJseLP6Ce1QHbmCK1kTs+R1f2MEKbPU/Ff5bA==";
-        System.out.println("签名:"+SHA256WithRSAUtils.buildRSASignByPrivateKey(str, privateKey));
-        System.out.println("校验:"+SHA256WithRSAUtils.buildRSAverifyByPublicKey(str,publicKey,SHA256WithRSAUtils.buildRSASignByPrivateKey(str, privateKey)));
+        System.out.println("签名:"+SHA256WithRSAUtils.buildRSASignByPrivateKey(md5, privateKey));
+        String sign = SHA256WithRSAUtils.buildRSASignByPrivateKey(md5, privateKey);
+        System.out.println("校验:"+SHA256WithRSAUtils.buildRSAverifyByPublicKey(md5,publicKey,SHA256WithRSAUtils.buildRSASignByPrivateKey(md5, privateKey)));
+        System.out.println("URL:"+ str.replace("签名", sign));
 
 //        MessageDigest messageDigest;
 //        messageDigest = MessageDigest.getInstance("SHA-256");

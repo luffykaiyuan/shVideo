@@ -8,12 +8,12 @@ import com.luffykaiyuan.shvideo.util.GetNowDate;
 import com.luffykaiyuan.shvideo.util.ShVideoUtils;
 import com.luffykaiyuan.shvideo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Repository
 public class VideoInfoServiceImpl implements VideoInfoService {
 
     @Autowired
