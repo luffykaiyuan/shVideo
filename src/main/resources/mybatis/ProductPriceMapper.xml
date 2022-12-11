@@ -4,106 +4,60 @@
   <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.ProductPrice">
     <id column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="price" jdbcType="VARCHAR" property="price" />
-    <result column="valid_time" jdbcType="VARCHAR" property="validTime" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="valid_time" jdbcType="INTEGER" property="validTime" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
     product_id, product_name, price, valid_time, add_time, status
   </sql>
-
-  <select id="selectProduct" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from product_price
-    where status = '1'
+    where product_id = #{productId,jdbcType=VARCHAR}
   </select>
-
-
-<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">-->
-<!--    delete from product_price-->
-<!--    where product_id = #{productId,jdbcType=VARCHAR}-->
-<!--  </delete>-->
-<!--  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">-->
-<!--    insert into product_price (product_id, product_name, price, -->
-<!--      valid_time, add_time, status-->
-<!--      )-->
-<!--    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, -->
-<!--      #{validTime,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}-->
-<!--      )-->
-<!--  </insert>-->
-<!--  <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">-->
-<!--    insert into product_price-->
-<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
-<!--      <if test="productId != null">-->
-<!--        product_id,-->
-<!--      </if>-->
-<!--      <if test="productName != null">-->
-<!--        product_name,-->
-<!--      </if>-->
-<!--      <if test="price != null">-->
-<!--        price,-->
-<!--      </if>-->
-<!--      <if test="validTime != null">-->
-<!--        valid_time,-->
-<!--      </if>-->
-<!--      <if test="addTime != null">-->
-<!--        add_time,-->
-<!--      </if>-->
-<!--      <if test="status != null">-->
-<!--        status,-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
-<!--      <if test="productId != null">-->
-<!--        #{productId,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="productName != null">-->
-<!--        #{productName,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="price != null">-->
-<!--        #{price,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="validTime != null">-->
-<!--        #{validTime,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="addTime != null">-->
-<!--        #{addTime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="status != null">-->
-<!--        #{status,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--  </insert>-->
-<!--  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">-->
-<!--    update product_price-->
-<!--    <set>-->
-<!--      <if test="productName != null">-->
-<!--        product_name = #{productName,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="price != null">-->
-<!--        price = #{price,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="validTime != null">-->
-<!--        valid_time = #{validTime,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="addTime != null">-->
-<!--        add_time = #{addTime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="status != null">-->
-<!--        status = #{status,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--    </set>-->
-<!--    where product_id = #{productId,jdbcType=VARCHAR}-->
-<!--  </update>-->
-<!--  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">-->
-<!--    update product_price-->
-<!--    set product_name = #{productName,jdbcType=VARCHAR},-->
-<!--      price = #{price,jdbcType=VARCHAR},-->
-<!--      valid_time = #{validTime,jdbcType=VARCHAR},-->
-<!--      add_time = #{addTime,jdbcType=TIMESTAMP},-->
-<!--      status = #{status,jdbcType=VARCHAR}-->
-<!--    where product_id = #{productId,jdbcType=VARCHAR}-->
-<!--  </update>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product_price
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">
+    insert into product_price (product_id, product_name, price, 
+      valid_time, add_time
+      )
+    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{validTime,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">
+    update product_price
+    <set>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="validTime != null">
+        valid_time = #{validTime,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.ProductPrice">
+    update product_price
+    set product_name = #{productName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      valid_time = #{validTime,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
 </mapper>

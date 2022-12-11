@@ -24,10 +24,10 @@
   </delete>
   <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.UserRebate">
     insert into user_rebate (id, username, username_son, 
-      rebate_num, add_time, status
+      rebate_num, add_time
       )
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{usernameSon,jdbcType=VARCHAR}, 
-      #{rebateNum,jdbcType=REAL}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      #{rebateNum,jdbcType=REAL}, #{addTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.UserRebate">

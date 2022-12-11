@@ -12,6 +12,8 @@ public interface UserInfoMapper {
 
     int updateUser(UserInfo userInfo);
 
+    int updateList(List<UserInfo> userInfoList);
+
     int deleteUser(String userId);
 
     UserInfo selectUserById(String userId);
@@ -27,5 +29,7 @@ public interface UserInfoMapper {
     List<UserInfo> selectUserByRank(String rankId);
 
     List<UserInfo> selectUserByCard(String cardType);
+
+    List<UserInfo> selectVipUser();
 
 }

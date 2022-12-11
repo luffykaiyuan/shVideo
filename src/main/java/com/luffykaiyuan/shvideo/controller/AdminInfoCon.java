@@ -2,9 +2,6 @@ package com.luffykaiyuan.shvideo.controller;
 
 import com.luffykaiyuan.shvideo.po.AdminInfo;
 import com.luffykaiyuan.shvideo.service.AdminInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +23,8 @@ public class AdminInfoCon {
 
     @PostMapping("/addAdmin")
     public int addAdmin(AdminInfo adminInfo){
-       return adminInfoService.insertAdminInfo(adminInfo);
+
+        return adminInfoService.insertAdminInfo(adminInfo);
     }
 
     @PostMapping("/updateAdmin")

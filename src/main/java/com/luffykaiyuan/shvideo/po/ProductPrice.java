@@ -7,9 +7,9 @@ public class ProductPrice {
 
     private String productName;
 
-    private String price;
+    private Float price;
 
-    private String validTime;
+    private int validTime;
 
     private Date addTime;
 
@@ -31,20 +31,12 @@ public class ProductPrice {
         this.productName = productName == null ? null : productName.trim();
     }
 
-    public String getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price == null ? null : price.trim();
-    }
-
-    public String getValidTime() {
-        return validTime;
-    }
-
-    public void setValidTime(String validTime) {
-        this.validTime = validTime == null ? null : validTime.trim();
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
     public Date getAddTime() {
@@ -61,5 +53,13 @@ public class ProductPrice {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public int getValidTime() {
+        return validTime;
+    }
+
+    public void setValidTime(int validTime) {
+        this.validTime = validTime;
     }
 }

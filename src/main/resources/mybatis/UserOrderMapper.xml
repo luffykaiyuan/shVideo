@@ -25,11 +25,9 @@
   </delete>
   <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.UserOrder">
     insert into user_order (order_id, username, order_money, 
-      product_id, product_name, add_time, 
-      status)
+      product_id, product_name, add_time)
     values (#{orderId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{orderMoney,jdbcType=VARCHAR}, 
-      #{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR})
+      #{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.luffykaiyuan.shvideo.po.UserOrder">
     insert into user_order

@@ -36,6 +36,12 @@
     where mold_id = #{moldId,jdbcType=VARCHAR}
   </update>
 
+  <update id="delSmallMold" parameterType="java.lang.String">
+    update video_mold
+    set status = '0'
+    where belong_mold_id = #{belongMoldId,jdbcType=VARCHAR}
+  </update>
+
   <select id="selectAllMold" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -75,6 +81,13 @@
     <include refid="Base_Column_List" />
     from video_mold
     where mold_type = '2' and status = '1'
+  </select>
+
+  <select id="selectSmallMoldByBig" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from video_mold
+    where belong_mold_id = #{belongMoldId,jdbcType=VARCHAR} and status = '1'
   </select>
 
   <select id="selectMoldById" parameterType="java.lang.String" resultMap="BaseResultMap">

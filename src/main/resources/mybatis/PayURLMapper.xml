@@ -15,9 +15,9 @@
 
   <insert id="insertPayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">
     insert into pay_url (pay_id, pay_url, plate_name, admin_name,
-      add_time, status)
+      add_time)
     values (#{payId,jdbcType=VARCHAR}, #{payUrl,jdbcType=VARCHAR}, #{plateName,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR},
-      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+      #{addTime,jdbcType=TIMESTAMP}
   </insert>
 
   <update id="updatePayURL" parameterType="com.luffykaiyuan.shvideo.po.PayURL">

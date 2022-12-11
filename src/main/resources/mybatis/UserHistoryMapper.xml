@@ -16,11 +16,9 @@
 
   <insert id="insertHistory" parameterType="com.luffykaiyuan.shvideo.po.UserHistory">
     insert into user_history (history_id, username, video_id,
-      play_time, history_time, add_time,
-      status)
+      play_time, history_time, add_time)
     values (#{historyId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{videoId,jdbcType=VARCHAR},
-      #{playTime,jdbcType=TIMESTAMP}, #{historyTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP},
-      #{status,jdbcType=VARCHAR})
+      #{playTime,jdbcType=TIMESTAMP}, #{historyTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
 
   <delete id="deleteOutTimeHistory">

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class VideoMoldService implements VideoMoldMapper{
+public class VideoMoldService implements VideoMoldMapper {
 
     @Autowired
     VideoMoldMapper videoMoldMapper;
@@ -26,7 +26,13 @@ public class VideoMoldService implements VideoMoldMapper{
     }
 
     public int delMold(String moldId){
+        videoMoldMapper.delSmallMold(moldId);
         return videoMoldMapper.delMold(moldId);
+    }
+
+    @Override
+    public int delSmallMold(String belongMoldId) {
+        return videoMoldMapper.delSmallMold(belongMoldId);
     }
 
 
@@ -52,6 +58,11 @@ public class VideoMoldService implements VideoMoldMapper{
 
     public List<VideoMold> selectInuseSmallMold() {
         return videoMoldMapper.selectInuseSmallMold();
+    }
+
+    @Override
+    public List<VideoMold> selectSmallMoldByBig(String belongMoldId) {
+        return videoMoldMapper.selectSmallMoldByBig(belongMoldId);
     }
 
     public VideoMold selectMoldById(String moldId) {

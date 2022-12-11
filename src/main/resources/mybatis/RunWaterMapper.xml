@@ -16,11 +16,9 @@
 
   <insert id="insertRunWater" parameterType="com.luffykaiyuan.shvideo.po.RunWater">
     insert into run_water (water_id, username, nick_name,
-      money, water_type, add_time,
-      status)
+      money, water_type, add_time)
     values (#{waterId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
-      #{money,jdbcType=REAL}, #{waterType,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
-      #{status,jdbcType=VARCHAR})
+      #{money,jdbcType=REAL}, #{waterType,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
 
   <update id="updateRunWater" parameterType="com.luffykaiyuan.shvideo.po.RunWater">

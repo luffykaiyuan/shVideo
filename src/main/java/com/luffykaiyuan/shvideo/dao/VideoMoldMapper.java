@@ -14,6 +14,8 @@ public interface VideoMoldMapper {
 
     int delMold(String moldId);
 
+    int delSmallMold(String belongMoldId);
+
     List<VideoMold> selectAllMold();
 
     List<VideoMold> selectInuseMold();
@@ -25,6 +27,8 @@ public interface VideoMoldMapper {
     List<VideoMold> selectAllSmallMold();
 
     List<VideoMold> selectInuseSmallMold();
+
+    List<VideoMold> selectSmallMoldByBig(String belongMoldId);
 
     VideoMold selectMoldById(String moldId);
 

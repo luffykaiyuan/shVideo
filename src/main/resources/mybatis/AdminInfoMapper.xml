@@ -14,11 +14,10 @@
   </sql>
 
   <insert id="insertAdminInfo" parameterType="com.luffykaiyuan.shvideo.po.AdminInfo">
-    insert into admininfo (admin_id, admin_name, password,
-      power, add_time, status
+    insert into admininfo (admin_id, admin_name, password, add_time
       )
     values (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{power,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      #{addTime,jdbcType=TIMESTAMP}
       )
   </insert>
 

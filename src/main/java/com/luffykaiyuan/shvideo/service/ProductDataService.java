@@ -1,10 +1,15 @@
 package com.luffykaiyuan.shvideo.service;
 
 import com.luffykaiyuan.shvideo.dao.ProductDataMapper;
+import com.luffykaiyuan.shvideo.dao.ProductPriceMapper;
+import com.luffykaiyuan.shvideo.dao.UserInfoMapper;
 import com.luffykaiyuan.shvideo.po.ProductData;
+import com.luffykaiyuan.shvideo.po.ProductPrice;
+import com.luffykaiyuan.shvideo.po.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -13,7 +18,24 @@ public class ProductDataService implements ProductDataMapper {
     @Autowired
     ProductDataMapper productDataMapper;
 
+    @Autowired
+    UserInfoMapper userInfoMapper;
+
+    @Autowired
+    ProductPriceMapper productPriceMapper;
+
     public int insertProductData(ProductData productData) {
+        UserInfo userInfo = userInfoMapper.selectUserByName(productData.getUsername());
+        ProductPrice productPrice = new ProductPrice();
+        BigDecimal userBig = new BigDecimal(Float.toString(userInfo.getMoney()));
+        BigDecimal productBig = new BigDecimal(Float.toString(productPrice.getPrice()));
+        userInfo.setMoney(userBig.subtract(productBig).floatValue());
+        userInfo.setRemainDay(productPrice.getValidTime());
+        userInfo.setCardType(productPrice.getProductName());
+        userInfo.setLookNum(99999);
+        userInfo.setOrginRank(userInfo.getRankId());
+        userInfo.setRankId(productPrice.getProductId());
+        userInfoMapper.updateUser(userInfo);
         return productDataMapper.insertProductData(productData);
     }
 

@@ -70,6 +70,12 @@ public class VideoMoldCon {
         return videoMoldService.selectInuseSmallMold();
     }
 
+    @GetMapping("/selectSmallMoldByBig")
+    @ApiOperation(value = "通过大类查小类")
+    public List<VideoMold> selectSmallMoldByBig(String belongMoldId) {
+        return videoMoldService.selectSmallMoldByBig(belongMoldId);
+    }
+
 //    @GetMapping("/selectMoldById")
 //    public VideoMold selectMoldById(String moldId) {
 //        return videoMoldService.selectMoldById(moldId);

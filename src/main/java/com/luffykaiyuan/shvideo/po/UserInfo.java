@@ -21,6 +21,8 @@ public class UserInfo {
 
     private String inviteUsername;
 
+    private int inviteNum;
+
     private String cardType;
 
     private Integer lookNum;
@@ -151,5 +153,13 @@ public class UserInfo {
 
     public void setOrginRank(String orginRank) {
         this.orginRank = orginRank;
+    }
+
+    public int getInviteNum() {
+        return inviteNum;
+    }
+
+    public void setInviteNum(int inviteNum) {
+        this.inviteNum = inviteNum;
     }
 }

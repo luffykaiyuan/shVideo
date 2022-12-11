@@ -11,14 +11,14 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    advert_id, advert_source, advert_location, advert_describe, admin_name, add_time, status
+    advert_id, advert_source, advert_location, advert_describe, admin_name, add_time
   </sql>
 
   <insert id="insertAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
     insert into advertinfo (advert_id, advert_source, advert_location, advert_describe, admin_name,
       add_time, status)
     values (#{advertId,jdbcType=VARCHAR}, #{advertSource,jdbcType=VARCHAR}, #{advertLocation,jdbcType=VARCHAR}, #{advertDescribe,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR},
-      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+      #{addTime,jdbcType=TIMESTAMP}
   </insert>
 
   <update id="updateAdvert" parameterType="com.luffykaiyuan.shvideo.po.AdvertInfo">
