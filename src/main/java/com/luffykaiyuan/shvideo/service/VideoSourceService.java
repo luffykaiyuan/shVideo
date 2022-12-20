@@ -52,7 +52,7 @@ public class VideoSourceService implements VideoSourceMapper {
         File newFile = new File(uploadAddress, uuidFilename);
         //将文件输出到目标的文件中
         try {
-            file.transferTo(newFile);
+            file.transferTo(newFile.getAbsoluteFile());
         } catch (IOException e) {
             e.printStackTrace();
         }

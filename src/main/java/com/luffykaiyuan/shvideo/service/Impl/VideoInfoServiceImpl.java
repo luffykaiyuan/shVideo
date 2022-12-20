@@ -1,5 +1,6 @@
 package com.luffykaiyuan.shvideo.service.Impl;
 
+import com.github.pagehelper.PageInfo;
 import com.luffykaiyuan.shvideo.dao.VideoInfoMapper;
 import com.luffykaiyuan.shvideo.po.VideoInfo;
 import com.luffykaiyuan.shvideo.po.VideoSource;
@@ -52,11 +53,11 @@ public class VideoInfoServiceImpl implements VideoInfoService {
         return videoInfoMapper.delVideo(videoId);
     }
 
-    public List<VideoInfo> selectAllVideo(int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectAllVideo(int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectAllVideo(), pageNum, pageSize);
     }
 
-    public List<VideoInfo> selectInuseVideo(int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectInuseVideo(int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectInuseVideo(), pageNum, pageSize);
     }
 
@@ -68,7 +69,7 @@ public class VideoInfoServiceImpl implements VideoInfoService {
         return videoInfoMapper.selectVideoByMold(bigMold, smallMold);
     }
 
-    public List<VideoInfo> selectVideoByBigMold(String bigMold, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByBigMold(String bigMold, int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectVideoByBigMold(bigMold), pageNum, pageSize);
     }
 
@@ -76,7 +77,7 @@ public class VideoInfoServiceImpl implements VideoInfoService {
         return videoInfoMapper.selectVideoByBigMoldLimit(bigMold);
     }
 
-    public List<VideoInfo> selectVideoBySmallMold(String smallMold, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoBySmallMold(String smallMold, int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectVideoBySmallMold(smallMold), pageNum, pageSize);
     }
 
@@ -88,19 +89,19 @@ public class VideoInfoServiceImpl implements VideoInfoService {
         return videoInfoMapper.selectVideoByMoldId(moldId);
     }
 
-    public List<VideoInfo> selectVideoByVideoName(String videoName, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByVideoName(String videoName, int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectVideoByVideoName(videoName), pageNum, pageSize);
     }
 
-    public List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByTime(Date beginTime, Date endTime, int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectVideoByTime(beginTime, endTime), pageNum, pageSize);
     }
 
-    public List<VideoInfo> selectVideoByTag(String videoTag, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByTag(String videoTag, int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectVideoByTag(videoTag), pageNum, pageSize);
     }
 
-    public List<VideoInfo> selectVideoByDes(String videoDescribe, int pageNum, int pageSize){
+    public PageInfo<VideoInfo> selectVideoByDes(String videoDescribe, int pageNum, int pageSize){
         return ShVideoUtils.doPage(videoInfoMapper.selectVideoByDes(videoDescribe), pageNum, pageSize);
     }
 

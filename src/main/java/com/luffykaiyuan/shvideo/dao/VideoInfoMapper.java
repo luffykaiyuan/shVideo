@@ -2,10 +2,12 @@ package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.VideoInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
+@Repository
 @Mapper
 public interface VideoInfoMapper {
 

@@ -12,9 +12,9 @@ public class ShVideoUtils {
         return true;
     }
 
-    public static List<VideoInfo> doPage(List<VideoInfo> videoInfoList, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public static PageInfo<VideoInfo> doPage(List<VideoInfo> videoInfoList, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         PageInfo<VideoInfo> pageInfo = new PageInfo<>(videoInfoList);
-        return pageInfo.getList();
+        return pageInfo;
     }
 }

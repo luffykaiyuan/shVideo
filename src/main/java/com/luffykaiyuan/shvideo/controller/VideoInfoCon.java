@@ -1,5 +1,6 @@
 package com.luffykaiyuan.shvideo.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.luffykaiyuan.shvideo.po.VideoInfo;
 import com.luffykaiyuan.shvideo.po.VideoSource;
 import com.luffykaiyuan.shvideo.service.VideoInfoService;
@@ -45,13 +46,13 @@ public class VideoInfoCon {
 
     @GetMapping("/selectAllVideo")
     @ApiOperation(value = "查询所有视频")
-    public List<VideoInfo> selectAllVideo(int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectAllVideo(int pageNum, int pageSize) {
         return videoInfoService.selectAllVideo(pageNum, pageSize);
     }
 
     @GetMapping("/selectInuseVideo")
     @ApiOperation(value = "查询所有有效视频")
-    public List<VideoInfo> selectInuseVideo(int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectInuseVideo(int pageNum, int pageSize) {
         return videoInfoService.selectInuseVideo(pageNum, pageSize);
     }
 
@@ -68,7 +69,7 @@ public class VideoInfoCon {
 
     @GetMapping("/selectVideoByBigMold")
     @ApiOperation(value = "查询视频 by 大类")
-    public List<VideoInfo> selectVideoByBigMold(String bigMold, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByBigMold(String bigMold, int pageNum, int pageSize) {
         return videoInfoService.selectVideoByBigMold(bigMold, pageNum, pageSize);
     }
 
@@ -80,7 +81,7 @@ public class VideoInfoCon {
 
     @GetMapping("/selectVideoBySmallMold")
     @ApiOperation(value = "查询视频 by 小类")
-    public List<VideoInfo> selectVideoBySmallMold(String smallMold, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoBySmallMold(String smallMold, int pageNum, int pageSize) {
         return videoInfoService.selectVideoBySmallMold(smallMold, pageNum, pageSize);
     }
 
@@ -98,25 +99,25 @@ public class VideoInfoCon {
 
     @GetMapping("/selectVideoByVideoName")
     @ApiOperation(value = "查询视频 by 片名")
-    public List<VideoInfo> selectVideoByVideoName(String videoName, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByVideoName(String videoName, int pageNum, int pageSize) {
         return videoInfoService.selectVideoByVideoName(videoName, pageNum, pageSize);
     }
 
     @GetMapping("/selectVideoByTime")
     @ApiOperation(value = "查询视频 by 时间间隔")
-    public List<VideoInfo> selectVideoByTime(Date beginTime, Date endTime, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByTime(Date beginTime, Date endTime, int pageNum, int pageSize) {
         return videoInfoService.selectVideoByTime(beginTime, endTime, pageNum, pageSize);
     }
 
     @GetMapping("/selectVideoByTag")
     @ApiOperation(value = "查询视频 by 标签")
-    public List<VideoInfo> selectVideoByTag(String videoTag, int pageNum, int pageSize) {
+    public PageInfo<VideoInfo> selectVideoByTag(String videoTag, int pageNum, int pageSize) {
         return videoInfoService.selectVideoByTag(videoTag, pageNum, pageSize);
     }
 
     @GetMapping("/selectVideoByDes")
     @ApiOperation(value = "查询视频 by 描述")
-    public List<VideoInfo> selectVideoByDes(String videoDescribe, int pageNum, int pageSize){ return videoInfoService.selectVideoByDes(videoDescribe, pageNum, pageSize); }
+    public PageInfo<VideoInfo> selectVideoByDes(String videoDescribe, int pageNum, int pageSize){ return videoInfoService.selectVideoByDes(videoDescribe, pageNum, pageSize); }
 
     @PostMapping("/updateBatchVideoServer")
     @ApiOperation(value = "修改视频的服务器地址 by id、可批量更新")
