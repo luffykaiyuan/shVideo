@@ -30,14 +30,14 @@
     <include refid="Base_Column_List" />
     from server_location
     where status = '1'
-    and serverType = '2'
+    and server_type = '2'
   </select>
 
   <select id="selectAllImgServer" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from server_location
-    where serverType = '2'
+    where server_type = '2'
   </select>
 
   <update id="updateImgServer" parameterType="com.luffykaiyuan.shvideo.po.ServerLocation">
@@ -67,14 +67,14 @@
     <include refid="Base_Column_List" />
     from server_location
     where status = '1'
-    and serverType = '1'
+    and server_type = '1'
   </select>
 
   <select id="selectAllVideoServer" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from server_location
-    where serverType = '1'
+    where server_type = '1'
   </select>
 
   <update id="updateVideoServer" parameterType="com.luffykaiyuan.shvideo.po.ServerLocation">
