@@ -13,9 +13,10 @@
     product_id, product_name, price, valid_time, add_time, status
   </sql>
   <select id="selectProduct" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from product_price
+    order by add_time desc
   </select>
 
   <select id="selectProductByName" parameterType="java.lang.String" resultMap="BaseResultMap">

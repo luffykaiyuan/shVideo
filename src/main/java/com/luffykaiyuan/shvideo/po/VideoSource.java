@@ -1,6 +1,8 @@
 package com.luffykaiyuan.shvideo.po;
 
 public class VideoSource {
+    private String onlyCode;
+
     private String id;
 
     private String name;
@@ -139,5 +141,13 @@ public class VideoSource {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public String getOnlyCode() {
+        return onlyCode;
+    }
+
+    public void setOnlyCode(String onlyCode) {
+        this.onlyCode = onlyCode;
     }
 }

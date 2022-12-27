@@ -16,9 +16,9 @@
 
   <insert id="insertHistory" parameterType="com.luffykaiyuan.shvideo.po.UserHistory">
     insert into user_history (history_id, username, video_id,
-      play_time, history_time, add_time)
+                              play_time, history_time, add_time)
     values (#{historyId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{videoId,jdbcType=VARCHAR},
-      #{playTime,jdbcType=TIMESTAMP}, #{historyTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP})
+            #{playTime,jdbcType=TIMESTAMP}, #{historyTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
 
   <delete id="deleteOutTimeHistory">
@@ -31,16 +31,31 @@
     <include refid="Base_Column_List" />
     from user_history
     where username = #{username,jdbcType=VARCHAR}
+    order by add_time desc
   </select>
 
   <update id="updateHistory" parameterType="com.luffykaiyuan.shvideo.po.UserHistory">
     update user_history
-    set username = #{username,jdbcType=VARCHAR},
-      video_id = #{videoId,jdbcType=VARCHAR},
-      play_time = #{playTime,jdbcType=TIMESTAMP},
-      history_time = #{historyTime,jdbcType=TIMESTAMP},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR}
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="videoId != null">
+        video_id = #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="playTime != null">
+        play_time = #{playTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="historyTime != null">
+        history_time = #{historyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
     where history_id = #{historyId,jdbcType=VARCHAR}
   </update>
 </mapper>

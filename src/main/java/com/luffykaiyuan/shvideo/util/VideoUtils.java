@@ -37,6 +37,7 @@ public class VideoUtils {
 
             JSONObject jsonObj = JSONObject.fromObject(content);
             VideoSource videoSource = new VideoSource();
+            videoSource.setOnlyCode(UUIDUtils.getUUID(16));
             videoSource.setId(jsonObj.getString("identCode"));
             videoSource.setName(jsonObj.getString("name"));
             videoSource.setContent(jsonObj.getString("content"));

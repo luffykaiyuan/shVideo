@@ -53,6 +53,8 @@ public class VideoInfoServiceImpl implements VideoInfoService {
         return videoInfoMapper.delVideo(videoId);
     }
 
+    public int delVideos(List<String> videoIds) { return videoInfoMapper.delVideos(videoIds); }
+
     public PageInfo<VideoInfo> selectAllVideo(int pageNum, int pageSize) {
         return ShVideoUtils.doPage(videoInfoMapper.selectAllVideo(), pageNum, pageSize);
     }

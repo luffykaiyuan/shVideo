@@ -15,18 +15,30 @@
 
   <insert id="insertMold" parameterType="com.luffykaiyuan.shvideo.po.VideoMold">
     insert into video_mold (mold_id, mold_name, mold_type, belong_mold_id,
-      add_time, status)
+                            add_time, status)
     values (#{moldId,jdbcType=VARCHAR}, #{moldName,jdbcType=VARCHAR}, #{moldType,jdbcType=VARCHAR}, #{belongMoldId,jdbcType=VARCHAR},
-      #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+            #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
   <update id="updateMold" parameterType="com.luffykaiyuan.shvideo.po.VideoMold">
     update video_mold
-    set mold_name = #{moldName,jdbcType=VARCHAR},
-      mold_type = #{moldType,jdbcType=VARCHAR},
-      belong_mold_id = #{belongMoldId,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR}
+    <set>
+      <if test="moldName != null">
+        mold_name = #{moldName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldType != null">
+        mold_type = #{moldType,jdbcType=VARCHAR},
+      </if>
+      <if test="belongMoldId != null">
+        belong_mold_id = #{belongMoldId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
     where mold_id = #{moldId,jdbcType=VARCHAR}
   </update>
 
@@ -46,6 +58,7 @@
     select
     <include refid="Base_Column_List" />
     from video_mold
+    order by add_time desc
   </select>
 
   <select id="selectInuseMold" resultMap="BaseResultMap">
@@ -53,6 +66,7 @@
     <include refid="Base_Column_List" />
     from video_mold
     where status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectAllBigMold" resultMap="BaseResultMap">
@@ -60,6 +74,7 @@
     <include refid="Base_Column_List" />
     from video_mold
     where mold_type = '1'
+    order by add_time desc
   </select>
 
   <select id="selectInuseBigMold" resultMap="BaseResultMap">
@@ -67,6 +82,7 @@
     <include refid="Base_Column_List" />
     from video_mold
     where mold_type = '1' and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectAllSmallMold" resultMap="BaseResultMap">
@@ -74,6 +90,7 @@
     <include refid="Base_Column_List" />
     from video_mold
     where mold_type = '2'
+    order by add_time desc
   </select>
 
   <select id="selectInuseSmallMold" resultMap="BaseResultMap">
@@ -81,6 +98,7 @@
     <include refid="Base_Column_List" />
     from video_mold
     where mold_type = '2' and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectSmallMoldByBig" resultMap="BaseResultMap">
@@ -88,6 +106,7 @@
     <include refid="Base_Column_List" />
     from video_mold
     where belong_mold_id = #{belongMoldId,jdbcType=VARCHAR} and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectMoldById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -102,6 +121,7 @@
     <include refid="Base_Column_List" />
     from video_mold
     where mold_id like '%' #{moldId,jdbcType=VARCHAR} '%'
+    order by add_time desc
   </select>
 
 </mapper>

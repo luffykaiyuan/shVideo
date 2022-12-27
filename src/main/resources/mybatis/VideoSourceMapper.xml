@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luffykaiyuan.shvideo.dao.VideoSourceMapper">
   <resultMap id="BaseResultMap" type="com.luffykaiyuan.shvideo.po.VideoSource">
-    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="only_code" jdbcType="VARCHAR" property="onlyCode" />
+    <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
@@ -20,28 +21,28 @@
     <result column="http_content" jdbcType="LONGVARCHAR" property="httpContent" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, content, tag, cover, secret_cover, secret_cover_text, ratio, size, duration,
+    only_code, id, name, content, tag, cover, secret_cover, secret_cover_text, ratio, size, duration,
     server_ip, xvalue, xkey
   </sql>
   <sql id="Blob_Column_List">
     http_content
   </sql>
-  
+
   <insert id="insertVideoSource" parameterType="com.luffykaiyuan.shvideo.po.VideoSource">
-    insert into video_source (id, name, content, tag,
-      cover, secret_cover, secret_cover_text,
-      ratio, size, duration,
-      server_ip, xvalue, xkey,
-      http_content)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR},
-      #{cover,jdbcType=VARCHAR}, #{secretCover,jdbcType=VARCHAR}, #{secretCoverText,jdbcType=VARCHAR},
-      #{ratio,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER},
-      #{serverIp,jdbcType=VARCHAR}, #{xvalue,jdbcType=VARCHAR}, #{xkey,jdbcType=VARCHAR},
-      #{httpContent,jdbcType=LONGVARCHAR})
+    insert into video_source (only_code, id, name, content, tag,
+                              cover, secret_cover, secret_cover_text,
+                              ratio, size, duration,
+                              server_ip, xvalue, xkey,
+                              http_content)
+    values (#{onlyCode,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR},
+            #{cover,jdbcType=VARCHAR}, #{secretCover,jdbcType=VARCHAR}, #{secretCoverText,jdbcType=VARCHAR},
+            #{ratio,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER},
+            #{serverIp,jdbcType=VARCHAR}, #{xvalue,jdbcType=VARCHAR}, #{xkey,jdbcType=VARCHAR},
+            #{httpContent,jdbcType=LONGVARCHAR})
   </insert>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -54,48 +55,48 @@
   </delete>
   <insert id="insert" parameterType="com.luffykaiyuan.shvideo.po.VideoSource">
     insert into video_source (id, name, content, tag,
-      cover, secret_cover, secret_cover_text, 
-      ratio, size, duration, 
-      server_ip, xvalue, xkey, 
-      http_content)
+                              cover, secret_cover, secret_cover_text,
+                              ratio, size, duration,
+                              server_ip, xvalue, xkey,
+                              http_content)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},  #{tag,jdbcType=VARCHAR},
-      #{cover,jdbcType=VARCHAR}, #{secretCover,jdbcType=VARCHAR}, #{secretCoverText,jdbcType=VARCHAR}, 
-      #{ratio,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER}, 
-      #{serverIp,jdbcType=VARCHAR}, #{xvalue,jdbcType=VARCHAR}, #{xkey,jdbcType=VARCHAR}, 
-      #{httpContent,jdbcType=LONGVARCHAR})
+            #{cover,jdbcType=VARCHAR}, #{secretCover,jdbcType=VARCHAR}, #{secretCoverText,jdbcType=VARCHAR},
+            #{ratio,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER},
+            #{serverIp,jdbcType=VARCHAR}, #{xvalue,jdbcType=VARCHAR}, #{xkey,jdbcType=VARCHAR},
+            #{httpContent,jdbcType=LONGVARCHAR})
   </insert>
 
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.luffykaiyuan.shvideo.po.VideoSource">
     update video_source
     set name = #{name,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      tag = #{tag,jdbcType=VARCHAR},
-      cover = #{cover,jdbcType=VARCHAR},
-      secret_cover = #{secretCover,jdbcType=VARCHAR},
-      secret_cover_text = #{secretCoverText,jdbcType=VARCHAR},
-      ratio = #{ratio,jdbcType=VARCHAR},
-      size = #{size,jdbcType=INTEGER},
-      duration = #{duration,jdbcType=INTEGER},
-      server_ip = #{serverIp,jdbcType=VARCHAR},
-      xvalue = #{xvalue,jdbcType=VARCHAR},
-      xkey = #{xkey,jdbcType=VARCHAR},
-      http_content = #{httpContent,jdbcType=LONGVARCHAR}
+        content = #{content,jdbcType=VARCHAR},
+        tag = #{tag,jdbcType=VARCHAR},
+        cover = #{cover,jdbcType=VARCHAR},
+        secret_cover = #{secretCover,jdbcType=VARCHAR},
+        secret_cover_text = #{secretCoverText,jdbcType=VARCHAR},
+        ratio = #{ratio,jdbcType=VARCHAR},
+        size = #{size,jdbcType=INTEGER},
+        duration = #{duration,jdbcType=INTEGER},
+        server_ip = #{serverIp,jdbcType=VARCHAR},
+        xvalue = #{xvalue,jdbcType=VARCHAR},
+        xkey = #{xkey,jdbcType=VARCHAR},
+        http_content = #{httpContent,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.luffykaiyuan.shvideo.po.VideoSource">
     update video_source
     set name = #{name,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      tag = #{tag,jdbcType=VARCHAR},
-      cover = #{cover,jdbcType=VARCHAR},
-      secret_cover = #{secretCover,jdbcType=VARCHAR},
-      secret_cover_text = #{secretCoverText,jdbcType=VARCHAR},
-      ratio = #{ratio,jdbcType=VARCHAR},
-      size = #{size,jdbcType=INTEGER},
-      duration = #{duration,jdbcType=INTEGER},
-      server_ip = #{serverIp,jdbcType=VARCHAR},
-      xvalue = #{xvalue,jdbcType=VARCHAR},
-      xkey = #{xkey,jdbcType=VARCHAR}
+        content = #{content,jdbcType=VARCHAR},
+        tag = #{tag,jdbcType=VARCHAR},
+        cover = #{cover,jdbcType=VARCHAR},
+        secret_cover = #{secretCover,jdbcType=VARCHAR},
+        secret_cover_text = #{secretCoverText,jdbcType=VARCHAR},
+        ratio = #{ratio,jdbcType=VARCHAR},
+        size = #{size,jdbcType=INTEGER},
+        duration = #{duration,jdbcType=INTEGER},
+        server_ip = #{serverIp,jdbcType=VARCHAR},
+        xvalue = #{xvalue,jdbcType=VARCHAR},
+        xkey = #{xkey,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

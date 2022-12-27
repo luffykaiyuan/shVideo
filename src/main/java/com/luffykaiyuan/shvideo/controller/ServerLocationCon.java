@@ -1,5 +1,6 @@
 package com.luffykaiyuan.shvideo.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.luffykaiyuan.shvideo.po.ServerLocation;
 import com.luffykaiyuan.shvideo.service.ServerLocationService;
 import io.swagger.annotations.Api;
@@ -32,14 +33,14 @@ public class ServerLocationCon {
 
     @GetMapping("/selectInuseImgServer")
     @ApiOperation(value = "查询所有有效图片服务器地址")
-    public List<ServerLocation> selectInuseImgServer() {
-        return serverLocationService.selectInuseImgServer();
+    public PageInfo<ServerLocation> selectInuseImgServer(int pageNum, int pageSize) {
+        return serverLocationService.selectInuseImgServer(pageNum, pageSize);
     }
 
     @GetMapping("/selectAllImgServer")
     @ApiOperation(value = "查询所有图片服务器地址")
-    public List<ServerLocation> selectAllImgServer() {
-        return serverLocationService.selectAllImgServer();
+    public PageInfo<ServerLocation> selectAllImgServer(int pageNum, int pageSize) {
+        return serverLocationService.selectAllImgServer(pageNum, pageSize);
     }
 
     @PostMapping("/updateImgServer")
@@ -62,14 +63,14 @@ public class ServerLocationCon {
 
     @GetMapping("/selectInuseVideoServer")
     @ApiOperation(value = "查询所有有效视频服务器地址")
-    public List<ServerLocation> selectInuseVideoServer() {
-        return serverLocationService.selectInuseVideoServer();
+    public PageInfo<ServerLocation> selectInuseVideoServer(int pageNum, int pageSize) {
+        return serverLocationService.selectInuseVideoServer(pageNum, pageSize);
     }
 
     @GetMapping("/selectAllVideoServer")
     @ApiOperation(value = "查询所有视频服务器地址")
-    public List<ServerLocation> selectAllVideoServer() {
-        return serverLocationService.selectAllVideoServer();
+    public PageInfo<ServerLocation> selectAllVideoServer(int pageNum, int pageSize) {
+        return serverLocationService.selectAllVideoServer(pageNum, pageSize);
     }
 
     @PostMapping("/updateVideoServer")

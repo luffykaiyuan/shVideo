@@ -15,19 +15,31 @@
 
   <insert id="insertAdminInfo" parameterType="com.luffykaiyuan.shvideo.po.AdminInfo">
     insert into admininfo (admin_id, admin_name, password, add_time
-      )
+    )
     values (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{addTime,jdbcType=TIMESTAMP}
-      )
+            #{addTime,jdbcType=TIMESTAMP}
+           )
   </insert>
 
   <update id="updateAdminInfo" parameterType="com.luffykaiyuan.shvideo.po.AdminInfo">
     update admininfo
-    set admin_name = #{adminName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      power = #{power,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR}
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null">
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
     where admin_id = #{adminId,jdbcType=VARCHAR}
   </update>
 
@@ -38,7 +50,7 @@
   </update>
 
   <select id="selectAdminById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from admininfo
     where admin_id = #{adminId,jdbcType=VARCHAR}
@@ -48,6 +60,7 @@
     select
     <include refid="Base_Column_List" />
     from admininfo
+    order by add_time desc
   </select>
 
   <select id="selectAdminByAdminName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -62,5 +75,6 @@
     <include refid="Base_Column_List" />
     from admininfo
     where status = '1'
+    order by add_time desc
   </select>
 </mapper>

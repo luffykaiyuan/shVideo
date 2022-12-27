@@ -1,5 +1,6 @@
 package com.luffykaiyuan.shvideo.service;
 
+import com.github.pagehelper.PageInfo;
 import com.luffykaiyuan.shvideo.dao.ServerLocationMapper;
 import com.luffykaiyuan.shvideo.po.ServerLocation;
 import com.luffykaiyuan.shvideo.util.GetNowDate;
@@ -9,55 +10,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class ServerLocationService implements ServerLocationMapper {
+public interface ServerLocationService{
 
-    @Autowired
-    ServerLocationMapper serverLocationMapper;
+    int insertImgServer(ServerLocation serverLocation);
 
-    public int insertImgServer(ServerLocation serverLocation) {
-        serverLocation.setServerId(UUIDUtils.getUUID(16));
-        serverLocation.setServerType("2");
-        serverLocation.setAddTime(GetNowDate.getDate());
-        return serverLocationMapper.insertImgServer(serverLocation);
-    }
+    int deleteImgServerById(String serverId);
 
-    public int deleteImgServerById(String serverId) {
-        return serverLocationMapper.deleteImgServerById(serverId);
-    }
+    PageInfo<ServerLocation> selectInuseImgServer(int pageNum, int pageSize);
 
-    public List<ServerLocation> selectInuseImgServer() {
-        return serverLocationMapper.selectInuseImgServer();
-    }
+    PageInfo<ServerLocation> selectAllImgServer(int pageNum, int pageSize);
 
-    public List<ServerLocation> selectAllImgServer() {
-        return serverLocationMapper.selectAllImgServer();
-    }
+    int updateImgServer(ServerLocation serverLocation);
 
-    public int updateImgServer(ServerLocation serverLocation) {
-        return serverLocationMapper.updateImgServer(serverLocation);
-    }
+    int insertVideoServer(ServerLocation serverLocation);
 
-    public int insertVideoServer(ServerLocation serverLocation) {
-        serverLocation.setServerId(UUIDUtils.getUUID(16));
-        serverLocation.setServerType("1");
-        serverLocation.setAddTime(GetNowDate.getDate());
-        return serverLocationMapper.insertVideoServer(serverLocation);
-    }
+    int deleteVideoServerById(String serverId);
 
-    public int deleteVideoServerById(String serverId) {
-        return serverLocationMapper.deleteVideoServerById(serverId);
-    }
+    PageInfo<ServerLocation> selectInuseVideoServer(int pageNum, int pageSize);
 
-    public List<ServerLocation> selectInuseVideoServer() {
-        return serverLocationMapper.selectInuseVideoServer();
-    }
+    PageInfo<ServerLocation> selectAllVideoServer(int pageNum, int pageSize);
 
-    public List<ServerLocation> selectAllVideoServer() {
-        return serverLocationMapper.selectAllVideoServer();
-    }
-
-    public int updateVideoServer(ServerLocation serverLocation) {
-        return serverLocationMapper.updateVideoServer(serverLocation);
-    }
+    int updateVideoServer(ServerLocation serverLocation);
 }

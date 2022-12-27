@@ -16,7 +16,7 @@ public interface RunWaterMapper {
 
     List<RunWater> selectWaterByTime(String beginTime, String endTime);
 
-    List<RunWater> selectWaterById(String waterId);
+    RunWater selectWaterById(String waterId);
 
     List<RunWater> selectWaterByName(String username);
 

@@ -12,42 +12,71 @@
     <result column="cover_server" jdbcType="VARCHAR" property="coverServer" />
     <result column="big_mold" jdbcType="VARCHAR" property="bigMold" />
     <result column="small_mold" jdbcType="VARCHAR" property="smallMold" />
-    <result column="paly_num" jdbcType="VARCHAR" property="palyNum" />
+    <result column="paly_num" jdbcType="INTEGER" property="palyNum" />
     <result column="duration" jdbcType="INTEGER" property="duration" />
     <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    video_id, video_name, video_cover, video_describe, video_tag, video_source, video_server, cover_server, big_mold, small_mold, paly_num, duration, admin_name, add_time,
-    status
+    video_id, video_name, video_cover, video_describe, video_tag, video_source, video_server, cover_server, big_mold, small_mold, duration, admin_name, add_time
   </sql>
 
   <insert id="insertVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
     insert into videoinfo (video_id, video_name, video_cover, video_describe, video_tag,
                            video_source, video_server, cover_server, big_mold, small_mold,
-                           paly_num, duration, admin_name, add_time, status)
+                           duration, admin_name, add_time)
     values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoCover,jdbcType=VARCHAR}, #{videoDescribe,jdbcType=VARCHAR}, #{videoTag,jdbcType=VARCHAR},
             #{videoSource,jdbcType=VARCHAR}, #{videoServer,jdbcType=VARCHAR}, #{coverServer,jdbcType=VARCHAR}, #{bigMold,jdbcType=VARCHAR}, #{smallMold,jdbcType=VARCHAR},
-            #{palyNum,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+            #{duration,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
 
   <update id="updateVideo" parameterType="com.luffykaiyuan.shvideo.po.VideoInfo">
     update videoinfo
-    set video_name = #{videoName,jdbcType=VARCHAR},
+    <set>
+      <if test="videoName != null">
+        video_name = #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCover != null">
         video_cover = #{videoCover,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDescribe != null">
         video_describe = #{videoDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="videoTag != null">
         video_tag = #{videoTag,jdbcType=VARCHAR},
+      </if>
+      <if test="videoSource != null">
         video_source = #{videoSource,jdbcType=VARCHAR},
+      </if>
+      <if test="videoServer != null">
         video_server = #{videoServer,jdbcType=VARCHAR},
+      </if>
+      <if test="coverServer != null">
         cover_server = #{coverServer,jdbcType=VARCHAR},
+      </if>
+      <if test="bigMold != null">
         big_mold = #{bigMold,jdbcType=VARCHAR},
+      </if>
+      <if test="smallMold != null">
         small_mold = #{smallMold,jdbcType=VARCHAR},
-        paly_num = #{palyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="palyNum != null">
+        paly_num = #{palyNum,jdbcType=INTEGER},
+      </if>
+      <if test="duration != null">
         duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
         admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
-        status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
     where video_id = #{videoId,jdbcType=VARCHAR}
   </update>
 
@@ -57,10 +86,21 @@
     where video_id = #{videoId,jdbcType=VARCHAR}
   </update>
 
+  <update id="delVideos" parameterType="list">
+    update videoinfo
+    set status = '0'
+    where video_id in
+    <foreach collection="videoIds" index="index" item="videoId"
+             open="(" separator="," close=")">
+      #{videoId}
+    </foreach>
+  </update>
+
   <select id="selectAllVideo" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from videoinfo
+    order by add_time desc
   </select>
 
   <select id="selectInuseVideo" resultMap="BaseResultMap">
@@ -68,6 +108,7 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectVideoById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -82,8 +123,9 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where big_mold = #{bigMold,jdbcType=VARCHAR}
-      and small_mold = #{smallMold,jdbcType=VARCHAR}
-        and status = '1'
+    and small_mold = #{smallMold,jdbcType=VARCHAR}
+    and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectVideoByBigMold" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -91,7 +133,8 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where big_mold = #{bigMold,jdbcType=VARCHAR}
-        and status = '1'
+    and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectVideoByBigMoldLimit" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -99,8 +142,8 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where big_mold = #{bigMold,jdbcType=VARCHAR}
-        and status = '1'
-    desc by add_time
+    and status = '1'
+    order by add_time desc
     limit 6
   </select>
 
@@ -109,7 +152,8 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where small_mold = #{smallMold,jdbcType=VARCHAR}
-        and status = '1'
+    and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectVideoBySmallMoldLimit" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -118,7 +162,7 @@
     from videoinfo
     where small_mold = #{smallMold,jdbcType=VARCHAR}
     and status = '1'
-    desc by add_time
+    order by add_time desc
     limit 4
   </select>
 
@@ -128,6 +172,7 @@
     from videoinfo
     where mold_id = #{moldId}
     and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectVideoByVideoName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -135,7 +180,8 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where video_name like '%' #{videoName,jdbcType=VARCHAR} '%'
-        and status = '1'
+    and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectVideoByTime" resultMap="BaseResultMap">
@@ -143,6 +189,7 @@
     <include refid="Base_Column_List" />
     from videoinfo
     where add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+    order by add_time desc
   </select>
 
   <select id="selectVideoByTag" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -151,6 +198,7 @@
     from videoinfo
     where video_tag like '%' #{videoTag,jdbcType=VARCHAR} '%'
     and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectVideoByDes" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -159,20 +207,23 @@
     from videoinfo
     where video_describe like '%' #{videoDescribe,jdbcType=VARCHAR} '%'
     and status = '1'
+    order by add_time desc
   </select>
 
   <update id="updateBatchVideoServer">
     <foreach collection="list" item="item" separator=";">
-      update videoinfo set video_server=#{item.videoServer},
-      cover_server=#{item.coverServer},
-      where video_id=#{item.videoId}
+      update videoinfo
+      set video_server=#{item.videoServer},
+      cover_server= #{item.coverServer}
+      where video_id = #{item.videoId}
     </foreach>
   </update>
 
   <update id="updateBatchVideoMold">
     <foreach collection="list" item="item" separator=";">
-      update videoinfo set big_mold=#{item.bigMold},
-      small_mold=#{item.smallMold},
+      update videoinfo
+      set big_mold=#{item.bigMold},
+      small_mold=#{item.smallMold}
       where video_id=#{item.videoId}
     </foreach>
   </update>

@@ -20,10 +20,20 @@
 
   <update id="updateTag" parameterType="com.luffykaiyuan.shvideo.po.VideoTag">
     update video_tag
-    set video_id = #{videoId,jdbcType=VARCHAR},
+    <set>
+      <if test="videoId != null">
+        video_id = #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
         tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
-        status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
     where tag_id = #{tagId,jdbcType=VARCHAR}
   </update>
 
@@ -34,7 +44,7 @@
   </update>
 
   <select id="selectTagById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from video_tag
     where tag_id = #{tagId,jdbcType=VARCHAR}
@@ -45,13 +55,15 @@
     <include refid="Base_Column_List" />
     from video_tag
     where tag_name like '%' #{tagName,jdbcType=VARCHAR} '%'
-        and status = '1'
+    and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectAllTag" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from video_tag
+    order by add_time desc
   </select>
 
   <select id="selectInuseTag" resultMap="BaseResultMap">
@@ -59,6 +71,7 @@
     <include refid="Base_Column_List" />
     from video_tag
     where status = '1'
+    order by add_time desc
   </select>
 
 </mapper>

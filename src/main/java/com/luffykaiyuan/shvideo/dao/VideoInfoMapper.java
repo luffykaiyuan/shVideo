@@ -2,6 +2,7 @@ package com.luffykaiyuan.shvideo.dao;
 
 import com.luffykaiyuan.shvideo.po.VideoInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -16,6 +17,8 @@ public interface VideoInfoMapper {
     int updateVideo(VideoInfo videoInfo);
 
     int delVideo(String videoId);
+
+    int delVideos(@Param("videoIds") List<String> videoIds);
 
     List<VideoInfo> selectAllVideo();
 

@@ -37,7 +37,7 @@ public class PayURLService implements PayURLMapper {
         return payURLMapper.selectAllPayURL();
     }
 
-    public List<PayURL> selectPayURLById(String payId) {
+    public PayURL selectPayURLById(String payId) {
         return payURLMapper.selectPayURLById(payId);
     }
 

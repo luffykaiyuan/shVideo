@@ -7,9 +7,7 @@ import com.luffykaiyuan.shvideo.service.VideoInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.List;
 @RestController
 @Api(tags = "视频操作")
 public class VideoInfoCon {
-    
+
     @Autowired
     VideoInfoService videoInfoService;
 
@@ -28,7 +26,7 @@ public class VideoInfoCon {
 
     @PostMapping("/insertVideoList")
     @ApiOperation(value = "根据视频源列表新增视频")
-    public int insertVideoList(List<VideoSource> sourceList, String coverServer, String videoServer, String adminName) {
+    public int insertVideoList(@RequestBody List<VideoSource> sourceList, String coverServer, String videoServer, String adminName) {
         return videoInfoService.insertVideoList(sourceList, coverServer, videoServer, adminName);
     }
 
@@ -43,6 +41,10 @@ public class VideoInfoCon {
     public int delVideo(String videoId) {
         return videoInfoService.delVideo(videoId);
     }
+
+    @GetMapping("/delVideos")
+    @ApiOperation(value = "批量删除视频")
+    public int delVideos(@RequestParam List<String> videoIds){ return videoInfoService.delVideos(videoIds); }
 
     @GetMapping("/selectAllVideo")
     @ApiOperation(value = "查询所有视频")
@@ -121,13 +123,13 @@ public class VideoInfoCon {
 
     @PostMapping("/updateBatchVideoServer")
     @ApiOperation(value = "修改视频的服务器地址 by id、可批量更新")
-    public int updateBatchVideoServer(List<VideoInfo> videoInfoList) {
+    public int updateBatchVideoServer(@RequestBody List<VideoInfo> videoInfoList) {
         return videoInfoService.updateBatchVideoServer(videoInfoList);
     }
 
     @PostMapping("/updateBatchVideoMold")
     @ApiOperation(value = "修改视频的大小类 by id、可批量更新")
-    public int updateBatchVideoMold(List<VideoInfo> videoInfoList) {
+    public int updateBatchVideoMold(@RequestBody List<VideoInfo> videoInfoList) {
         return videoInfoService.updateBatchVideoMold(videoInfoList);
     }
 }

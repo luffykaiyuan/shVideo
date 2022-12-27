@@ -26,54 +26,87 @@
 
   <insert id="insertUser" parameterType="com.luffykaiyuan.shvideo.po.UserInfo">
     insert into userinfo (user_id, username, password,
-      nick_name, code_address, remain_day, invite_code,
-      invite_username, orgin_rank, add_time
-      )
+                          nick_name, code_address, remain_day, invite_code,
+                          invite_username, orgin_rank, add_time
+    )
     values (#{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{nickName,jdbcType=VARCHAR}, #{codeAddress,jdbcType=VARCHAR}, #{remainDay,jdbcType=INTEGER}, #{inviteCode,jdbcType=VARCHAR},
-      #{inviteUsername,jdbcType=VARCHAR}, #{orginRank,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}
-      )
+            #{nickName,jdbcType=VARCHAR}, #{codeAddress,jdbcType=VARCHAR}, #{remainDay,jdbcType=INTEGER}, #{inviteCode,jdbcType=VARCHAR},
+            #{inviteUsername,jdbcType=VARCHAR}, #{orginRank,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}
+           )
   </insert>
 
   <update id="updateUser" parameterType="com.luffykaiyuan.shvideo.po.UserInfo">
     update userinfo
-    set password = #{password,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      code_address = #{codeAddress,jdbcType=VARCHAR},
-      money = #{money,jdbcType=REAL},
-      remain_day = #{remainDay,jdbcType=INTEGER},
-      invite_code = #{inviteCode,jdbcType=VARCHAR},
-      invite_username = #{inviteUsername,jdbcType=VARCHAR},
-      invite_num = #{inviteNum,jdbcType=INTEGER},
-      card_type = #{cardType,jdbcType=VARCHAR},
-      look_num = #{lookNum,jdbcType=INTEGER},
-      rank_id = #{rankId,jdbcType=VARCHAR},
-      orgin_rank = #{orginRank,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR}
+    <set>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="codeAddress != null">
+        code_address = #{codeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="remainDay != null">
+        remain_day = #{remainDay,jdbcType=INTEGER},
+      </if>
+      <if test="inviteCode != null">
+        invite_code = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteUsername != null">
+        invite_username = #{inviteUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteNum != null">
+        invite_num = #{inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="lookNum != null">
+        look_num = #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="rankId != null">
+        rank_id = #{rankId,jdbcType=VARCHAR},
+      </if>
+      <if test="orginRank != null">
+        orgin_rank = #{orginRank,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
     where username = #{username,jdbcType=VARCHAR}
   </update>
   <update id="updateList"  parameterType="java.util.List">
     <foreach collection="list" item="item" index="index" open="" close="" separator=";">
       update userinfo
       <set>
-        remain_day=${item.remainDay}
-      </set>
-      <set>
-        card_type=${item.cardType}
-      </set>
-      <set>
-        look_num=${item.lookNum}
-      </set>
-      <set>
-        rank_id=${item.rankId}
-      </set>
-      <set>
-        orgin_rank=${item.orginRank}
+        <if test="item.remainDay != null and item.remainDay != ''">
+          remain_day = #{item.remainDay},
+        </if>
+        <if test="item.cardType != null and item.cardType != ''">
+          card_type = #{item.cardType},
+        </if>
+        <if test="item.lookNum != null and item.lookNum != ''">
+          look_num = #{item.lookNum},
+        </if>
+        <if test="item.rankId != null and item.rankId != ''">
+          rank_id = #{item.rankId},
+        </if>
+        <if test="item.orginRank != null and item.orginRank != ''">
+          orgin_rank = #{item.orginRank},
+        </if>
       </set>
       where username = ${item.username}
     </foreach>
   </update>
+
   <update id="delUser" parameterType="java.lang.String">
     update userinfo
     set status = '0'
@@ -81,11 +114,11 @@
   </update>
 
   <select id="selectUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from userinfo
     where user_id = #{userId,jdbcType=VARCHAR}
-        and status = '1'
+    and status = '1'
   </select>
 
   <select id="selectVipUser" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -93,6 +126,7 @@
     <include refid="Base_Column_List" />
     from userinfo
     where status = '1' and remain_day > 0
+    order by add_time desc
   </select>
 
   <select id="selectUserByName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -100,7 +134,7 @@
     <include refid="Base_Column_List" />
     from userinfo
     where username like '%' #{username,jdbcType=VARCHAR} '%'
-        and status = '1'
+    and status = '1'
   </select>
 
   <select id="selectAllUser" resultMap="BaseResultMap">
@@ -108,6 +142,7 @@
     <include refid="Base_Column_List" />
     from userinfo
     where username like '%' #{username,jdbcType=VARCHAR} '%'
+    order by add_time desc
   </select>
 
   <select id="selectInuseUser" resultMap="BaseResultMap">
@@ -115,6 +150,7 @@
     <include refid="Base_Column_List" />
     from userinfo
     where status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectUserByTime" resultMap="BaseResultMap">
@@ -123,6 +159,7 @@
     from userinfo
     where add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
     and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectUserByRank" parameterType="java.lang.String"  resultMap="BaseResultMap">
@@ -131,6 +168,7 @@
     from userinfo
     where rank_id = #{rankId,jdbcType=VARCHAR}
     and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectUserByCard" parameterType="java.lang.String"  resultMap="BaseResultMap">
@@ -139,5 +177,6 @@
     from userinfo
     where card_type = #{cardType,jdbcType=VARCHAR}
     and status = '1'
+    order by add_time desc
   </select>
 </mapper>

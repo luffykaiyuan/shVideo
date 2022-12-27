@@ -15,6 +15,8 @@ public interface  VideoInfoService{
 
     int delVideo(String videoId);
 
+    int delVideos(List<String> videoIds);
+
     int insertVideoList(List<VideoSource> sourceList, String coverServer, String videoServer, String adminName);
 
     PageInfo<VideoInfo> selectAllVideo(int pageNum, int pageSize);

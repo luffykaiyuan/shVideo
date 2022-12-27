@@ -23,7 +23,7 @@ public class VideoInfo {
 
     private String smallMold;
 
-    private String palyNum;
+    private Integer palyNum;
 
     private Integer duration;
 
@@ -129,11 +129,11 @@ public class VideoInfo {
         this.adminName = adminName;
     }
 
-    public String getPalyNum() {
+    public Integer getPalyNum() {
         return palyNum;
     }
 
-    public void setPalyNum(String palyNum) {
+    public void setPalyNum(Integer palyNum) {
         this.palyNum = palyNum;
     }
 

@@ -33,7 +33,7 @@ public class RunWaterService implements RunWaterMapper {
         return runWaterMapper.selectWaterByTime(beginTime, endTime);
     }
 
-    public List<RunWater> selectWaterById(String waterId) {
+    public RunWater selectWaterById(String waterId) {
         return runWaterMapper.selectWaterById(waterId);
     }
 

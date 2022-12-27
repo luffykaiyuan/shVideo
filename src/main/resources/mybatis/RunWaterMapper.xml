@@ -16,19 +16,33 @@
 
   <insert id="insertRunWater" parameterType="com.luffykaiyuan.shvideo.po.RunWater">
     insert into run_water (water_id, username, nick_name,
-      money, water_type, add_time)
+                           money, water_type, add_time)
     values (#{waterId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
-      #{money,jdbcType=REAL}, #{waterType,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
+            #{money,jdbcType=REAL}, #{waterType,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
 
   <update id="updateRunWater" parameterType="com.luffykaiyuan.shvideo.po.RunWater">
     update run_water
-    set username = #{username,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      money = #{money,jdbcType=REAL},
-      water_type = #{waterType,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR}
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="waterType != null">
+        water_type = #{waterTypejdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
     where water_id = #{waterId,jdbcType=VARCHAR}
   </update>
 
@@ -37,6 +51,7 @@
     <include refid="Base_Column_List" />
     from run_water
     where status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectWaterByTime" resultMap="BaseResultMap">
@@ -45,6 +60,7 @@
     from run_water
     where status = '1'
     and where add_time between #{beginTime,jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+    order by add_time desc
   </select>
 
   <select id="selectWaterById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -52,7 +68,7 @@
     <include refid="Base_Column_List" />
     from run_water
     where water_id = #{waterId,jdbcType=VARCHAR}
-        and status = '1'
+    and status = '1'
   </select>
 
   <select id="selectWaterByName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -60,7 +76,8 @@
     <include refid="Base_Column_List" />
     from run_water
     where username = #{username,jdbcType=VARCHAR}
-        and status = '1'
+    and status = '1'
+    order by add_time desc
   </select>
 
   <select id="selectWaterByType" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -68,7 +85,8 @@
     <include refid="Base_Column_List" />
     from run_water
     where water_type = #{waterType,jdbcType=VARCHAR}
-        and status = '1'
+    and status = '1'
+    order by add_time desc
   </select>
 
 </mapper>
